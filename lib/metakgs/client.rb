@@ -1,5 +1,6 @@
 require 'json'
 require 'metakgs/client/archives'
+require 'metakgs/client/top100'
 require 'metakgs/version'
 require 'net/http'
 require 'uri'
@@ -8,6 +9,7 @@ module MetaKGS
   class Client
 
     include MetaKGS::Client::Archives
+    include MetaKGS::Client::Top100
 
     attr_reader :api_endpoint, :http
     attr_accessor :user_agent
@@ -19,7 +21,7 @@ module MetaKGS
     end
 
     def get( path )
-      response = do_get path =~ /^https?:\/\// ? URI(path) : uri_for path
+      response = do_get path =~ /^https?:\/\// ? URI(path) : uri_for(path)
       response.value unless Net::HTTPSuccess === response
       JSON.parse( response.body )
     end
