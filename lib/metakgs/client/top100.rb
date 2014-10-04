@@ -6,6 +6,10 @@ module MetaKGS
         (get "top100")["content"]
       end
 
+      def get_top100_players
+        (get_top100)["players"]
+      end
+
     end
   end
 end

@@ -1,6 +1,7 @@
 require 'json'
 require 'metakgs/client/archives'
 require 'metakgs/client/top100'
+require 'metakgs/client/tournaments'
 require 'metakgs/version'
 require 'net/http'
 require 'uri'
@@ -10,6 +11,7 @@ module MetaKGS
 
     include MetaKGS::Client::Archives
     include MetaKGS::Client::Top100
+    include MetaKGS::Client::Tournaments
 
     attr_reader :api_endpoint, :http
     attr_accessor :user_agent
