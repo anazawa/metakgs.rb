@@ -1,13 +1,17 @@
-Gem::Specification.new do |s|
-  s.name        = 'metakgs'
-  s.version     = '0.0.0'
-  s.date        = '2014-10-05'
-  s.summary     = 'MetaKGS client'
-  s.description = 'CLI and Ruby client library for MetaKGS'
-  s.authores    = [ "Ryo Anazawa" ]
-  s.email       = 'anazawa@cpan.org'
-  s.files       = [ "lib/metakgs.rb" ]
-  s.homepage    = "https://github.com/anazawa/metakgs.rb"
-  s.license     = 'MIT'
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'metakgs/version'
+
+Gem::Specification.new do |gem|
+  gem.name        = 'metakgs'
+  gem.version     = MetaKGS::VERSION
+  gem.date        = '2014-10-05'
+  gem.summary     = 'MetaKGS client'
+  gem.description = 'CLI and Ruby client library for MetaKGS'
+  gem.authors     = [ "Ryo Anazawa" ]
+  gem.email       = [ 'anazawa@cpan.org' ]
+  gem.files       = `git ls-files`.split($/)
+  gem.homepage    = "https://github.com/anazawa/metakgs.rb"
+  gem.license     = 'MIT'
 end
 
