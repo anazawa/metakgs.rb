@@ -1,7 +1,7 @@
 require 'time'
 
 module MetaKGS
-  class Cache
+  module Cache
 
     def get( url )
       raise "call to abstract method 'get'"

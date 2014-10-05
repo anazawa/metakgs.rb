@@ -3,8 +3,10 @@ require 'metakgs/cache'
 require 'tmpdir'
 
 module MetaKGS
-  class Cache
-    class File < Cache
+  module Cache
+    class File
+
+      include MetaKGS::Cache
 
       attr_reader :cache_root
 
