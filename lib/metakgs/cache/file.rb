@@ -3,14 +3,14 @@ require 'metakgs/cache'
 require 'tmpdir'
 
 module MetaKGS
-  module Cache
-    class File
-
-      include MetaKGS::Cache
+  class Cache
+    class File < Cache
 
       attr_reader :cache_root
 
       def initialize( args = {} )
+        super
+
         if args.has_key?(:cache_root) then
           @cache_root = args[:cache_root]
         else
@@ -28,20 +28,48 @@ module MetaKGS
       def get( url )
         path = build_path url
 
-        return unless ::File.exists?( path )
-
-        response = ::File.open(path) do |file|
-          Marshal.load( file )
+        response = begin
+          ::File.open(path) do |file|
+            Marshal.load( file )
+          end
+        rescue => evar
+          warn evar
         end
-
-        return if expired? response
+          
+        return unless response.is_a? Net::HTTPResponse
+        return if response and expired? response
 
         response
       end
 
       def set( url, response )
-        ::File.open(build_path(url), 'w+') do |file|
+        path = build_path url
+
+        purge if auto_purge
+
+        ::File.open(path, 'w+') do |file|
           Marshal.dump( response, file )
+        end
+      end
+
+      def purge
+        Dir.foreach(cache_root) do |filename|
+          path = ::File.join( cache_root, filename )
+
+          next if filename == '.' or filename == '..'
+
+          response = begin
+            ::File.open(path) do |file|
+              Marshal.load( file )
+            end
+          rescue => evar
+            warn evar
+          end
+
+          next unless response
+          next unless response.is_a? Net::HTTPResponse
+
+          ::File.unlink( path ) if expired? response
         end
       end
 

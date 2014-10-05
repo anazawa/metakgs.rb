@@ -1,7 +1,13 @@
 require 'time'
 
 module MetaKGS
-  module Cache
+  class Cache
+
+    attr_reader :auto_purge
+
+    def initialize( args = {} )
+      @auto_purge = args.has_key?(:auto_purge) ? args[:auto_purge] : false
+    end
 
     def get( url )
       raise "call to abstract method 'get'"
@@ -9,6 +15,10 @@ module MetaKGS
 
     def set( url, response )
       raise "call to abstract method 'set'"
+    end
+
+    def purge
+      raise "call to abstract method 'purge'"
     end
 
     def expired?( response )
