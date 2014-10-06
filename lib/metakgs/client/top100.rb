@@ -3,11 +3,11 @@ module MetaKGS
     module Top100
 
       def get_top100
-        (get "top100")["content"]
+        get "top100"
       end
 
       def get_top100_players
-        (get_top100)["players"]
+        get_top100["players"]
       end
 
     end

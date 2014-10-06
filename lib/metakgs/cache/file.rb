@@ -28,6 +28,8 @@ module MetaKGS
       def get( url )
         path = build_path url
 
+        return unless ::File.exists?( path )
+
         response = begin
           ::File.open(path) do |file|
             Marshal.load( file )

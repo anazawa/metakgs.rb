@@ -24,7 +24,7 @@ module MetaKGS
     def expired?( response )
       cache_control = response.get_fields('Cache-Control') || []
       max_age = cache_control.find { |token| token =~ /^max-age=(\d+)$/ } && $1
-      !max_age || Time.now > Time.parse(response['Date']) + max_age.to_i
+      !max_age || Time.now.gmtime > Time.parse(response['Date']) + max_age.to_i
     end
 
   end

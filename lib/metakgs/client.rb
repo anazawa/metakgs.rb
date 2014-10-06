@@ -26,26 +26,37 @@ module MetaKGS
 
     def get( path )
       response = do_get path =~ /^https?:\/\// ? URI(path) : uri_for(path)
-      response.value unless Net::HTTPSuccess === response
-      JSON.parse( response.body )
-    end
+      body = Net::HTTPSuccess === response ? JSON.parse(response.body) : nil
+      content = body && body["content"]
 
-    def do_get( url )
-      cached = cache.get( url.to_s )
+      content.define_singleton_method(:response) { response }
+      content.define_singleton_method(:body) { body }
 
-      return cached if cached
-
-      response = http.get(url.path, {
-        'User-Agent' => user_agent,
-      })
-
-      cache.set( url.to_s, response ) if Net::HTTPSuccess === response
-
-      response
+      content
     end
 
     def uri_for( path )
       URI( File.join(api_endpoint.to_s, path) )
+    end
+
+    def do_get( url )
+      cached = cache.get( url.to_s )
+      response = cached || http_get(url.path)
+
+      cache.set( url.to_s, response ) if !cached and should_cache?(response)
+      response.define_singleton_method(:cached?) { cached ? true : false }
+
+      response
+    end
+
+    def should_cache?( response )
+      Net::HTTPSuccess === response
+    end
+
+    def http_get( path )
+      http.get(path, {
+        'User-Agent' => user_agent,
+      })
     end
 
   end

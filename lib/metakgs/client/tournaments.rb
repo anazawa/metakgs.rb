@@ -1,3 +1,5 @@
+require 'metakgs/client/paginator'
+
 module MetaKGS
   class Client
     module Tournaments
@@ -9,36 +11,20 @@ module MetaKGS
       end
 
       def do_get_tournaments( url )
-        response = get url
-        link = response["link"]
-        tournaments = response["content"]["tournaments"]
-        outer = self # XXX
+        client = self # XXX
+        content = get url
 
-        tournaments.define_singleton_method(:has_next?) do
-          !link["next"].nil?
+        content.define_singleton_method(:get) do |url|
+          client.do_get_tournaments( url )
         end
 
-        tournaments.define_singleton_method(:next) do
-          has_next? && outer.do_get_tournaments( link["next"] )
-        end
+        content.extend( MetaKGS::Client::Paginator )
 
-        tournaments.define_singleton_method(:has_prev?) do
-          !link["prev"].nil?
-        end
+        content
+      end
 
-        tournaments.define_singleton_method(:prev) do
-          has_prev? && outer.do_get_tournaments( link["prev"] )
-        end
-
-        tournaments.define_singleton_method(:first) do
-          outer.do_get_tournaments( link["first"] )
-        end
-
-        tournaments.define_singleton_method(:last) do
-          outer.do_get_tournaments( link["last"] )
-        end
-
-        tournaments
+      def get_tournament_list( query = {} )
+        get_tournaments(query)["tournaments"]
       end
 
     end

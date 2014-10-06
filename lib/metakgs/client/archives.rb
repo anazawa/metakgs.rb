@@ -1,3 +1,6 @@
+require 'date'
+require 'metakgs/client/paginator'
+
 module MetaKGS
   class Client
     module Archives
@@ -17,36 +20,39 @@ module MetaKGS
       end
 
       def do_get_archives( url )
-        archives = get url
-        link = archives["link"]
-        content = archives["content"]
-        outer = self # XXX
+        client = self
+        content = get url
 
-        content.define_singleton_method(:has_next?) do
-          !link["next"].nil?
+        return content unless Net::HTTPOK === content.response 
+
+        content.define_singleton_method(:get) do |url|
+          client.do_get_archives( url )
         end
 
-        content.define_singleton_method(:next) do
-          has_next? && outer.do_get_archives( link["next"] )
-        end
-
-        content.define_singleton_method(:has_prev?) do
-          !link["prev"].nil?
-        end
-
-        content.define_singleton_method(:prev) do
-          has_prev? && outer.do_get_archives( link["prev"] )
-        end
-
-        content.define_singleton_method(:first) do
-          outer.do_get_archives( link["first"] )
-        end
-
-        content.define_singleton_method(:last) do
-          outer.do_get_archives( link["last"] )
-        end
+        content.extend( MetaKGS::Client::Paginator )
 
         content
+      end
+
+      def get_games( query = {} )
+        games = get_archives(query)["games"]
+
+        if query.has_key?(:day) then
+          now = Time.now
+
+          date = Date.new(
+            query[:year]  || now.year,
+            query[:month] || now.mon,
+            query[:day]
+          )
+
+          games.select! do |game|
+            started_at = Time.parse( game["started_at"] )
+            Date.parse( started_at.strftime('%Y-%m-%d') ) === date
+          end
+        end
+
+        games
       end
 
     end
