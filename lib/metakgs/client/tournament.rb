@@ -77,14 +77,6 @@ module MetaKGS
         content && content["entrants"]
       end
 
-      alias :get_tourn              :get_tournament
-      alias :get_tourn_rounds       :get_tournament_rounds
-      alias :get_tourn_round        :get_tournament_round
-      alias :get_tourn_byes         :get_tournament_byes
-      alias :get_tourn_games        :get_tournament_games
-      alias :get_tourn_entrants     :get_tournament_entrants
-      alias :get_tourn_entrant_list :get_tournament_entrant_list
-
       alias :tourn              :get_tournament
       alias :tourn_rounds       :get_tournament_rounds
       alias :tourn_round        :get_tournament_round

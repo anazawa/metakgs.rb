@@ -31,9 +31,6 @@ module MetaKGS
         content && content["tournaments"]
       end
 
-      alias :get_tourns     :get_tournaments
-      alias :get_tourn_list :get_tournament_list
-
       alias :tourns     :get_tournaments
       alias :tourn_list :get_tournament_list
 

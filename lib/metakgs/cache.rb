@@ -9,8 +9,8 @@ module MetaKGS
       @auto_purge = args.has_key?(:auto_purge) ? args[:auto_purge] : false
     end
 
-    def get( key )
-      object = fetch key
+    def fetch( key )
+      object = do_fetch key
 
       return unless object
 
@@ -22,9 +22,17 @@ module MetaKGS
       object.value
     end
 
-    def set( key, value, expires_at )
+    def store( key, value, expires_at )
       purge if auto_purge
-      store build_object( key, value, expires_at )
+      do_store build_object( key, value, expires_at )
+    end
+
+    def delete( key )
+      do_delete key
+    end
+
+    def keys
+      do_keys
     end
 
     def purge
@@ -43,20 +51,20 @@ module MetaKGS
       )
     end
 
-    def fetch( key )
-      raise "call to abstract method 'fetch'"
+    def do_fetch( key )
+      raise "call to abstract method 'do_fetch'"
     end
 
-    def store( object )
-      raise "call to abstract method 'store'"
+    def do_store( object )
+      raise "call to abstract method 'do_store'"
     end
 
-    def delete( key )
-      raise "call to abstract method 'delete'"
+    def do_delete( key )
+      raise "call to abstract method 'do_delete'"
     end
 
-    def keys
-      raise "call to abstract method 'keys'"
+    def do_keys
+      raise "call to abstract method 'do_keys'"
     end
 
   end

@@ -27,17 +27,17 @@ module MetaKGS
         ::File.join( cache_root, Digest::MD5.hexdigest(key) ) 
       end
 
-      def fetch( key )
+      def do_fetch( key )
         path = build_path key
         read_file path
       end
 
-      def store( object )
+      def do_store( object )
         path = build_path object.key
         write_file path, object
       end
 
-      def keys
+      def do_keys
         keys = []
         Dir.foreach(cache_root) do |filename|
           next if filename == '.' or filename == '..'
@@ -49,7 +49,7 @@ module MetaKGS
         keys
       end
 
-      def delete( key )
+      def do_delete( key )
         path = build_path key
         unlink_file path
       end
