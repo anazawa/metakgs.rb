@@ -1,6 +1,6 @@
 require 'json'
-require 'metakgs/cache/file'
-require 'metakgs/client/headers'
+require 'metakgs/cache/null'
+require 'metakgs/headers'
 require 'metakgs/client/archives'
 require 'metakgs/client/top100'
 require 'metakgs/client/tournament'
@@ -21,13 +21,11 @@ module MetaKGS
     attr_reader :api_endpoint, :http, :cache, :default_headers
 
     def initialize( args = {} )
+      @default_headers = MetaKGS::Headers.new
       @api_endpoint = URI( args[:api_endpoint] || "http://metakgs.org/api" )
-      @cache = args[:cache] || MetaKGS::Cache::File.new
+      @cache = args[:cache] || MetaKGS::Cache::Null.new
       @http = Net::HTTP.new( api_endpoint.host, api_endpoint.port )
-      
-      @default_headers = MetaKGS::Client::Headers.new({
-        'User-Agent' => args[:user_agent] || "MetaKGS Ruby Gem #{MetaKGS::VERSION}",
-      })
+      agent = args[:user_agent] || "MetaKGS Ruby Gem #{MetaKGS::VERSION}"
     end
 
     def agent
