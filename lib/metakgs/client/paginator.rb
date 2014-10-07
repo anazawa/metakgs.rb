@@ -2,28 +2,36 @@ module MetaKGS
   class Client
     module Paginator
 
+      def link
+        raise "call to abstract method 'link'"
+      end
+
+      def get( url )
+        raise "call to abstract method 'get'"
+      end
+
       def has_next?
-        body && !body["link"]["next"].nil?
+        !link["next"].nil?
       end
 
       def next
-        has_next? && get(body["link"]["next"])
+        has_next? && get(link["next"])
       end
 
       def has_prev?
-        body && !body["link"]["prev"].nil?
+        !link["prev"].nil?
       end
 
       def prev
-        has_prev? && get(body["link"]["prev"])
+        has_prev? && get(link["prev"])
       end
 
       def first
-        body && get(body["link"]["first"])
+        get link["first"]
       end
 
       def last
-        body && get(body["link"]["last"])
+        get link["last"]
       end
 
     end
