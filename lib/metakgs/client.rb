@@ -1,5 +1,6 @@
 require 'json'
 require 'metakgs/cache/file'
+require 'metakgs/client/headers'
 require 'metakgs/client/archives'
 require 'metakgs/client/top100'
 require 'metakgs/client/tournament'
@@ -16,20 +17,30 @@ module MetaKGS
     include MetaKGS::Client::Tournament
     include MetaKGS::Client::Tournaments
 
-    attr_reader :api_endpoint, :http, :cache
-    attr_accessor :user_agent
+    attr_reader :api_endpoint, :http, :cache, :default_headers
 
     def initialize( args = {} )
-      @user_agent = args[:user_agent] || "MetaKGS Ruby Gem #{MetaKGS::VERSION}"
+      #@user_agent = args[:user_agent] || "MetaKGS Ruby Gem #{MetaKGS::VERSION}"
       @api_endpoint = URI( args[:api_endpoint] || "http://metakgs.org/api" )
       @cache = args[:cache] || MetaKGS::Cache::File.new
       @http = Net::HTTP.new( api_endpoint.host, api_endpoint.port )
+      
+      @default_headers = MetaKGS::Client::Headers.new({
+        'User-Agent' => args[:user_agent] || "MetaKGS Ruby Gem #{MetaKGS::VERSION}",
+      })
     end
 
-    def http_get( url )
-      http.get(URI(url).path, {
-        'User-Agent' => user_agent,
-      })
+    def agent( value )
+      default_headers['User-Agent'] = value if value
+      default_headers['User-Agent']
+    end
+
+    def http_head( url, headers = nil )
+      http_request( :head, url, headers )
+    end
+
+    def http_get( url, headers = nil )
+      http_request( :get, url, headers )
     end
 
     def get_body( path )
@@ -60,6 +71,16 @@ module MetaKGS
 
     def should_cache?( response )
       Net::HTTPSuccess === response
+    end
+
+  private
+
+    def http_request( method, url, headers = nil )
+      http.send(
+        method,
+        URI( url ).path,
+        headers ? headers.to_hash : default_headers.to_hash
+      )
     end
 
   end
