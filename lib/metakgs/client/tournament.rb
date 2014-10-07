@@ -16,6 +16,11 @@ module MetaKGS
         body && body["content"]
       end
 
+      def get_tournament_rounds( query = {} )
+        content = get_tournament query
+        content && content["rounds"]
+      end
+
       def get_tournament_round( query = {} )
         id = query[:id]
         round = query[:round]
@@ -73,6 +78,7 @@ module MetaKGS
       end
 
       alias :get_tourn              :get_tournament
+      alias :get_tourn_rounds       :get_tournament_rounds
       alias :get_tourn_round        :get_tournament_round
       alias :get_tourn_byes         :get_tournament_byes
       alias :get_tourn_games        :get_tournament_games
@@ -80,6 +86,7 @@ module MetaKGS
       alias :get_tourn_entrant_list :get_tournament_entrant_list
 
       alias :tourn              :get_tournament
+      alias :tourn_rounds       :get_tournament_rounds
       alias :tourn_round        :get_tournament_round
       alias :tourn_byes         :get_tournament_byes
       alias :tourn_games        :get_tournament_games

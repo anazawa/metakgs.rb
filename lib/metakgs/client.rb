@@ -16,6 +16,8 @@ module MetaKGS
     include MetaKGS::Client::Tournament
     include MetaKGS::Client::Tournaments
 
+    ONE_YEAR = 31556930
+
     attr_reader :api_endpoint, :http, :cache
     attr_accessor :user_agent
 
@@ -46,10 +48,16 @@ module MetaKGS
       response = cached || http_get( url )
       is_cached = cached ? true : false
 
-      cache.set( url, response ) if !cached and should_cache?(response)
+      cache.set( url, response, expires_at(response) ) if !cached and should_cache?(response)
       response.define_singleton_method(:cached?) { is_cached }
 
       response
+    end
+
+    def expires_at( response )
+      cache_control = response.get_fields('Cache-Control') || []
+      max_age = cache_control.find { |token| token =~ /^max-age=(\d+)$/ } && $1
+      max_age ? Time.now + max_age.to_i : Time.now + ONE_YEAR
     end
 
     def should_cache?( response )

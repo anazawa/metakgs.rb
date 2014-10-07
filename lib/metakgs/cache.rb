@@ -1,30 +1,62 @@
-require 'time'
+require 'metakgs/cache/object'
 
 module MetaKGS
   class Cache
 
-    attr_reader :auto_purge
+    attr_accessor :auto_purge
 
     def initialize( args = {} )
       @auto_purge = args.has_key?(:auto_purge) ? args[:auto_purge] : false
     end
 
-    def get( url )
-      raise "call to abstract method 'get'"
+    def get( key )
+      object = fetch key
+
+      return unless object
+
+      if object.expired?
+        delete key
+        return
+      end
+
+      object.value
     end
 
-    def set( url, response )
-      raise "call to abstract method 'set'"
+    def set( key, value, expires_at )
+      purge if auto_purge
+      store build_object( key, value, expires_at )
     end
 
     def purge
-      raise "call to abstract method 'purge'"
+      keys.each do |key|
+        get key
+      end
     end
 
-    def expired?( response )
-      cache_control = response.get_fields('Cache-Control') || []
-      max_age = cache_control.find { |token| token =~ /^max-age=(\d+)$/ } && $1
-      !max_age || Time.now.gmtime > Time.parse(response['Date']) + max_age.to_i
+  private
+
+    def build_object( key, value, expires_at )
+      MetaKGS::Cache::Object.new(
+        :key   => key,
+        :value => value,
+        :expires_at => expires_at,
+      )
+    end
+
+    def fetch( key )
+      raise "call to abstract method 'fetch'"
+    end
+
+    def store( object )
+      raise "call to abstract method 'store'"
+    end
+
+    def delete( key )
+      raise "call to abstract method 'delete'"
+    end
+
+    def keys
+      raise "call to abstract method 'keys'"
     end
 
   end
