@@ -41,7 +41,7 @@ Ruby toolkit for working with the MetaKGS API
     )
 
     # Tournament Entrants
-    tourn_rounds = client.get_tournament_entrants(
+    tourn_entrants = client.get_tournament_entrants(
       :id => 123
     )
 
@@ -65,6 +65,7 @@ Ruby toolkit for working with the MetaKGS API
     tourn        -> get_tournament
     tourn_rounds -> get_tournament["rounds"]
 
+    tourn_round -> get_tournament_round
     tourn_games -> get_tournament_round["games"]
     tourn_byes  -> get_tournament_round["byes"]
 
@@ -81,7 +82,7 @@ Ruby toolkit for working with the MetaKGS API
 
 ## See Also
 
-[MetaKGS](http://metakgs.org)
+[MetaKGS](http://metakgs.org) - Unofficial JSON API for KGS Go Server
 
 ## Copyright
 
