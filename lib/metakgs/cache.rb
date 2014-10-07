@@ -22,9 +22,11 @@ module MetaKGS
       object.value
     end
 
-    def store( key, value, expires_at )
+    def store( key, value, expires_at = nil )
+      object = build_object key, value, expires_at
       purge if auto_purge
-      do_store build_object( key, value, expires_at )
+      do_store object
+      value
     end
 
     def delete( key )
@@ -37,13 +39,13 @@ module MetaKGS
 
     def purge
       keys.each do |key|
-        get key
+        fetch key
       end
     end
 
   private
 
-    def build_object( key, value, expires_at )
+    def build_object( key, value, expires_at = nil )
       MetaKGS::Cache::Object.new(
         :key   => key,
         :value => value,

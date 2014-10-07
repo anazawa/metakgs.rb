@@ -8,11 +8,11 @@ module MetaKGS
         @key = args[:key]
         @value = args[:value]
         @created_at = Time.now
-        @expires_at = args[:expires_at] || Time.now
+        @expires_at = args[:expires_at]
       end
 
       def expired?
-        Time.now >= expires_at
+        !expires_at.nil? && Time.now >= expires_at
       end
 
     end

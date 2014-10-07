@@ -7,6 +7,7 @@ require 'metakgs/client/tournament'
 require 'metakgs/client/tournaments'
 require 'metakgs/version'
 require 'net/http'
+require 'time'
 require 'uri'
 
 module MetaKGS
@@ -20,7 +21,6 @@ module MetaKGS
     attr_reader :api_endpoint, :http, :cache, :default_headers
 
     def initialize( args = {} )
-      #@user_agent = args[:user_agent] || "MetaKGS Ruby Gem #{MetaKGS::VERSION}"
       @api_endpoint = URI( args[:api_endpoint] || "http://metakgs.org/api" )
       @cache = args[:cache] || MetaKGS::Cache::File.new
       @http = Net::HTTP.new( api_endpoint.host, api_endpoint.port )
@@ -30,22 +30,17 @@ module MetaKGS
       })
     end
 
-    def agent( value )
-      default_headers['User-Agent'] = value if value
+    def agent
       default_headers['User-Agent']
     end
 
-    def http_head( url, headers = nil )
-      http_request( :head, url, headers )
-    end
-
-    def http_get( url, headers = nil )
-      http_request( :get, url, headers )
+    def agent=( value )
+      default_headers['User-Agent'] = value
     end
 
     def get_body( path )
       response = get path =~ /^https?:\/\// ? path : uri_for(path)
-      Net::HTTPSuccess === response ? JSON.parse(response.body) : nil
+      response && JSON.parse( response[:content] ) 
     end
 
     def uri_for( path )
@@ -54,26 +49,54 @@ module MetaKGS
 
     def get( url )
       cached = cache.fetch( url )
-      response = cached || http_get( url )
-      is_cached = cached ? true : false
 
-      cache.store( url, response, expires_at(response) ) if !cached and should_cache?(response)
-      response.define_singleton_method(:cached?) { is_cached }
+      return cached if cached and !expired? cached
 
-      response
+      headers = default_headers.dclone
+      headers['If-None-Match'] = cached[:etag] if cached
+      headers['If-Modified-Since'] = cached[:last_modified] if cached
+
+      response = http_get url, headers
+
+      case response
+      when Net::HTTPSuccess
+        cache.store(url, {
+          :date          => response['Date'],
+          :last_modified => response['Last-Modified'],
+          :etag          => response['ETag'],
+          :cache_control => response.get_fields('Cache-Control'),
+          :content_type  => response['Content-Type'],
+          :content       => response.body,
+        })
+      when Net::HTTPNotModified
+        cache.store(url, {
+          :date          => response['Date'],
+          :last_modified => response['Last-Modified'],
+          :etag          => response['ETag'],
+          :cache_control => response.get_fields('Cache-Control'),
+          :content_type  => cached[:content_type],
+          :content       => cached[:content],
+        })
+      else
+        response.value
+      end
     end
 
-    def expires_at( response )
-      cache_control = response.get_fields('Cache-Control') || []
+    def expired?( response )
+      cache_control = response[:cache_control] || []
       max_age = cache_control.find { |token| token =~ /^max-age=(\d+)$/ } && $1
-      max_age ? Time.now + max_age.to_i : Time.now + 31556930 # one year
-    end
-
-    def should_cache?( response )
-      Net::HTTPSuccess === response
+      !max_age || Time.now >= Time.parse(response[:date]) + max_age.to_i
     end
 
   private
+
+    def http_head( url, headers = nil )
+      http_request :head, url, headers
+    end
+
+    def http_get( url, headers = nil )
+      http_request :get, url, headers
+    end
 
     def http_request( method, url, headers = nil )
       http.send(
