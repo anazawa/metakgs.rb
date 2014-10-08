@@ -1,6 +1,7 @@
 require 'json'
 require 'metakgs/cache/null'
-require 'metakgs/headers'
+require 'metakgs/http/header'
+require 'metakgs/http/response'
 require 'metakgs/client/archives'
 require 'metakgs/client/top100'
 require 'metakgs/client/tournament'
@@ -18,27 +19,37 @@ module MetaKGS
     include MetaKGS::Client::Tournament
     include MetaKGS::Client::Tournaments
 
-    attr_reader :api_endpoint, :http, :cache, :default_headers
+    attr_accessor :cache
+    attr_reader :api_endpoint
 
     def initialize( args = {} )
-      @default_headers = MetaKGS::Headers.new
       @api_endpoint = URI( args[:api_endpoint] || "http://metakgs.org/api" )
-      @cache = args[:cache] || MetaKGS::Cache::Null.new
-      @http = Net::HTTP.new( api_endpoint.host, api_endpoint.port )
-      agent = args[:user_agent] || "MetaKGS Ruby Gem #{MetaKGS::VERSION}"
+      self.cache = args[:cache] || MetaKGS::Cache::Null.new
+      self.default_header = args[:default_header] if args[:default_header]
+      self.agent = args[:agent] if args.has_key?( :agent )
+    end
+
+    def default_header
+      @default_header ||= MetaKGS::HTTP::Header.new({
+        'User-Agent' => "MetaKGS Ruby Gem #{MetaKGS::VERSION}",
+      })
+    end
+
+    def default_header=( value )
+      @default_header = MetaKGS::HTTP::Header.new( value )
     end
 
     def agent
-      default_headers['User-Agent']
+      default_header['User-Agent']
     end
 
     def agent=( value )
-      default_headers['User-Agent'] = value
+      default_header['User-Agent'] = value
     end
 
     def get_body( path )
       response = get path =~ /^https?:\/\// ? path : uri_for(path)
-      response && JSON.parse( response[:content] ) 
+      response && response.body
     end
 
     def uri_for( path )
@@ -46,61 +57,45 @@ module MetaKGS
     end
 
     def get( url )
-      cached = cache.fetch( url )
+      cached = cache.fetch url
 
-      return cached if cached and !expired? cached
+      return cached if cached and !cached.expired?
 
-      headers = default_headers.dclone
-      headers['If-None-Match'] = cached[:etag] if cached
-      headers['If-Modified-Since'] = cached[:last_modified] if cached
+      header = default_header.dclone
+      header['If-None-Match'] = cached.etag if cached
+      header['If-Modified-Since'] = cached.last_modified.httpdate if cached
 
-      response = http_get url, headers
+      response = http_get url, header
 
       case response
       when Net::HTTPSuccess
-        cache.store(url, {
-          :date          => response['Date'],
-          :last_modified => response['Last-Modified'],
-          :etag          => response['ETag'],
-          :cache_control => response.get_fields('Cache-Control'),
-          :content_type  => response['Content-Type'],
-          :content       => response.body,
-        })
+        cache.store url, build_response(response)
       when Net::HTTPNotModified
-        cache.store(url, {
-          :date          => response['Date'],
-          :last_modified => response['Last-Modified'],
-          :etag          => response['ETag'],
-          :cache_control => response.get_fields('Cache-Control'),
-          :content_type  => cached[:content_type],
-          :content       => cached[:content],
-        })
+        cache.store url, cached.merge(response)
       else
         response.value
       end
     end
 
-    def expired?( response )
-      cache_control = response[:cache_control] || []
-      max_age = cache_control.find { |token| token =~ /^max-age=(\d+)$/ } && $1
-      !max_age || Time.now >= Time.parse(response[:date]) + max_age.to_i
-    end
-
   private
 
-    def http_head( url, headers = nil )
-      http_request :head, url, headers
+    def build_response( response )
+      MetaKGS::HTTP::Response.new( response )
     end
 
-    def http_get( url, headers = nil )
-      http_request :get, url, headers
+    def http
+      @http ||= Net::HTTP.new( api_endpoint.host, api_endpoint.port )
     end
 
-    def http_request( method, url, headers = nil )
+    def http_get( url, header = nil )
+      http_request :get, url, header
+    end
+
+    def http_request( method, url, header = nil )
       http.send(
         method,
         URI( url ).path,
-        headers ? headers.to_hash : default_headers.to_hash
+        header ? header.to_hash : default_header.to_hash
       )
     end
 
