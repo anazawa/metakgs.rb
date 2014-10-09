@@ -8,7 +8,6 @@ require 'metakgs/client/tournament'
 require 'metakgs/client/tournaments'
 require 'metakgs/version'
 require 'net/http'
-require 'time'
 require 'uri'
 
 module MetaKGS
@@ -20,13 +19,17 @@ module MetaKGS
     include MetaKGS::Client::Tournaments
 
     attr_accessor :cache
-    attr_reader :api_endpoint
+    attr_accessor :read_timeout
+    attr_accessor :open_timeout
+    attr_accessor :api_endpoint
 
     def initialize( args = {} )
-      @api_endpoint = URI( args[:api_endpoint] || "http://metakgs.org/api" )
-      self.cache = args[:cache] || MetaKGS::Cache::Null.new
+      @api_endpoint = args[:api_endpoint] || 'http://metakgs.org/api'
+      @read_timeout = args[:read_timeout]
+      @open_timeout = args[:open_timeout]
+      @cache = args[:cache] || MetaKGS::Cache::Null.new
       self.default_header = args[:default_header] if args[:default_header]
-      self.agent = args[:agent] if args.has_key?( :agent )
+      self.agent = args[:agent] if args.has_key? :agent
     end
 
     def default_header
@@ -47,56 +50,57 @@ module MetaKGS
       default_header['User-Agent'] = value
     end
 
-    def get_body( path )
-      response = get path =~ /^https?:\/\// ? path : uri_for(path)
-      response && response.body
+    def get_json( path )
+      response = get path
+      content_type = response.content_type || ""
+      return if response.code_type == Net::HTTPNotFound
+      raise "Not a JSON response" unless content_type == "application/json"
+      JSON.parse response.body
     end
 
-    def uri_for( path )
-      File.join( api_endpoint.to_s, path )
-    end
-
-    def get( url )
+    def get( path )
+      url = path =~ /^https?:\/\// ? path : uri_for(path)
       cached = cache.fetch url
 
       return cached if cached and !cached.expired?
 
       header = default_header.dclone
-      header['If-None-Match'] = cached.etag if cached
-      header['If-Modified-Since'] = cached.last_modified.httpdate if cached
+      header['If-None-Match'] = cached.etag if cached and cached.has_etag?
+      header.if_modified_since = cached.last_modified if cached and cached.has_last_modified?
 
-      response = http_get url, header
+      response = http_get URI(url), header
 
       case response
-      when Net::HTTPSuccess
-        cache.store url, build_response(response)
+      when Net::HTTPOK
+        cache.store url, create_response(response)
       when Net::HTTPNotModified
         cache.store url, cached.merge(response)
+      when Net::HTTPNotFound
+        create_response response
       else
         response.value
       end
     end
 
+    def uri_for( path )
+      File.join api_endpoint, path
+    end
+
   private
 
-    def build_response( response )
+    def create_response( response )
       MetaKGS::HTTP::Response.new( response )
     end
 
-    def http
-      @http ||= Net::HTTP.new( api_endpoint.host, api_endpoint.port )
+    def http_get( *args )
+      http_request :get, *args
     end
 
-    def http_get( url, header = nil )
-      http_request :get, url, header
-    end
-
-    def http_request( method, url, header = nil )
-      http.send(
-        method,
-        URI( url ).path,
-        header ? header.to_hash : default_header.to_hash
-      )
+    def http_request( method, url, header = default_header )
+      http = Net::HTTP.new( url.host, url.port )
+      http.read_timeout = read_timeout if read_timeout
+      http.open_timeout = open_timeout if open_timeout
+      http.send method, url.path, header.to_hash
     end
 
   end

@@ -12,7 +12,7 @@ module MetaKGS
       end
 
       def do_get_tournament( url )
-        body = get_body url
+        body = get_json url
         body && body["content"]
       end
 
@@ -35,7 +35,7 @@ module MetaKGS
 
       def do_get_tournament_round( url )
         client = self
-        body = get_body url
+        body = get_json url
         content = body && body["content"]
         round = content && content["round"]
         rounds = content && content["rounds"]
@@ -68,7 +68,7 @@ module MetaKGS
       end
 
       def do_get_tournament_entrants( url )
-        body = get_body url
+        body = get_json url
         body && body["content"]
       end
 

@@ -13,7 +13,7 @@ module MetaKGS
 
       def do_get_tournaments( url )
         client = self
-        body = get_body url
+        body = get_json url
         content = body && body["content"]
         link = body && body["link"]
 

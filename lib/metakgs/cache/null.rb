@@ -1,6 +1,6 @@
 module MetaKGS
   class Cache
-    class Null
+    class Null < Cache
 
       def do_fetch( key )
       end

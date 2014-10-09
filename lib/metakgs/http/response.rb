@@ -1,4 +1,3 @@
-require 'json'
 require 'time'
 
 module MetaKGS
@@ -12,43 +11,64 @@ module MetaKGS
 
     public
 
-      def initialize( response )
-        self.response = response
+      def initialize( res )
+        @response = res
       end
 
-      def merge( response )
-        dup.merge! response
+      def merge( res )
+        dup.merge! res
       end
 
-      def merge!( response )
-        self.old_response = self.response unless old_response
-        self.response = response
+      def merge!( res )
+        @old_response = response unless old_response
+        @response = res
         self
       end
 
+      def code_type
+        old_response ? old_response.class : response.class
+      end
+
       def date
-        Time.parse response['Date']
+        has_date? ? Time.parse( response['Date'] ) : nil
+      end
+
+      def has_date?
+        response.key? 'Date'
       end
 
       def last_modified
-        Time.parse response['Last-Modified']
+        has_last_modified? ? Time.parse( response['Last-Modified'] ) : nil
+      end
+
+      def has_last_modified?
+        response.key? 'Last-Modified'
       end
 
       def etag
         response['ETag']
       end
 
+      def has_etag?
+        response.key? 'ETag'
+      end
+
       def cache_control
         response.get_fields('Cache-Control') || []
       end
 
+      def content_type
+        res = response.body ? response : old_response
+        res && res.content_type
+      end
+
       def body
-        JSON.parse response.body || old_response.body
+        response.body || old_response.body
       end
 
       def expired?
         max_age = cache_control.find { |token| token =~ /^max-age=(\d+)$/ } && $1
-        !max_age || Time.now >= date + max_age.to_i
+        !max_age || !has_date? || Time.now >= date + max_age.to_i
       end
 
     end
