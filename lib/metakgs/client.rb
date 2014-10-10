@@ -62,7 +62,7 @@ module MetaKGS
       url = path =~ /^https?:\/\// ? path : uri_for(path)
       cached = cache.fetch url
 
-      return cached if cached and !cached.expired?
+      return cached if cached and cached.fresh?
 
       header = default_header.dclone
       header['If-None-Match'] = cached.etag if cached and cached.has_etag?
@@ -70,16 +70,20 @@ module MetaKGS
 
       response = http_get URI(url), header
 
+      res = nil
       case response
-      when Net::HTTPOK
-        cache.store url, create_response(response)
+      when Net::HTTPOK, Net::HTTPNotFound
+        res = create_response response
       when Net::HTTPNotModified
-        cache.store url, cached.merge(response)
-      when Net::HTTPNotFound
-        create_response response
+        res = cached.merge_304 response
       else
         response.value
+        raise "don't know how to handle #{response}"
       end
+
+      cache.store url, res if res.cacheable?
+
+      res
     end
 
     def uri_for( path )
