@@ -13,6 +13,7 @@ require 'net/http'
 require 'uri'
 
 module MetaKGS
+  # Public: TBD
   class Client
 
     include MetaKGS::Client::Archives
@@ -35,11 +36,29 @@ module MetaKGS
       Zlib::GzipFile::Error,
     ]
 
+    # Public: Gets or sets a cache object associated with this client.
+    # The cache object must either inherit from MetaKGS::Cache or implement
+    # all of #fetch, #store, #delete and #keys methods. Defaults to
+    # MetaKGS::Cache::Null.
     attr_accessor :cache
+
+    # Public: Should @cache act like a "shared cache" according
+    # to the definition in RFC 7234? Defaults to false.
     attr_accessor :shared_cache
+
+    # Public: Gets or sets a Logger object which is used to log
+    # requests and responses.
     attr_accessor :logger
+
+    # Public: Number of seconds to wait for one block to be read
+    # by this user agent. Defaults to 60 seconds.
     attr_accessor :read_timeout
+
+    # Public: Number of seconds to wait for the connection to open.
+    # Defaults to nil.
     attr_accessor :open_timeout
+
+    # Public: Base URL for API requests. Defaults to http://metakgs.org/api.
     attr_accessor :api_endpoint
 
     def initialize( args = {} )
@@ -53,20 +72,40 @@ module MetaKGS
       self.agent = args[:agent] if args.has_key? :agent
     end
 
+    # Public: Gets a header object that will provide default header
+    # values for any requests sent.
+    #
+    #   agent = client.default_header['User-Agent']
+    #   client.default_header['User-Agent'] = 'MyAgent/0.0.1'
+    #
     def default_header
       @default_header ||= MetaKGS::HTTP::Header.new({
         'User-Agent' => "MetaKGS Ruby Gem #{MetaKGS::VERSION}",
       })
     end
 
+    # Public: Replaces @default_header with the given header Hash.
+    #
+    #   client.default_header({
+    #     'User-Agent' => 'MyAgent/0.0.1'
+    #   })
+    #
     def default_header=( value )
       @default_header = MetaKGS::HTTP::Header.new( value )
     end
 
+    # Public: A shortcut for:
+    #
+    #   client.default_header['User-Agent']
+    #
     def agent
       default_header['User-Agent']
     end
 
+    # Public: A shortcut for:
+    #
+    #   client.default_header['User-Agent'] = value
+    #
     def agent=( value )
       default_header['User-Agent'] = value
     end
@@ -88,13 +127,7 @@ module MetaKGS
       header['If-None-Match'] = cached.etag if cached and cached.has_etag?
       header.if_modified_since = cached.last_modified if cached and cached.has_last_modified?
 
-      begin
-        response = http_get URI(url), header
-      rescue *NET_HTTP_EXCEPTIONS => evar
-        raise MetaKGS::Error::ConnectionFailed, evar
-      rescue Timeout::Error => evar
-        raise MetaKGS::Error::TimeoutError, evar
-      end
+      response = http_get URI(url), header
 
       case response
       when Net::HTTPOK
@@ -134,10 +167,25 @@ module MetaKGS
 
     def http_request( method, url, header = default_header )
       http = Net::HTTP.new( url.host, url.port )
+
       http.read_timeout = read_timeout if read_timeout
       http.open_timeout = open_timeout if open_timeout
-      http.set_debug_output logger if logger.debug?
-      http.send method, url.path, header.to_hash
+
+      logger.info('Request') { "#{method.upcase} #{url}" }
+      logger.debug('Request') { header.to_hash }
+
+      begin
+        response = http.send method, url.request_uri, header.to_hash
+      rescue *NET_HTTP_EXCEPTIONS => evar
+        raise MetaKGS::Error::ConnectionFailed, evar
+      rescue Timeout::Error => evar
+        raise MetaKGS::Error::TimeoutError, evar
+      end
+
+      logger.info('Response') { "#{response.code} #{response.message}" }
+      logger.debug('Response') { response.to_hash }
+
+      response
     end
 
   end
