@@ -10,6 +10,7 @@ require 'metakgs/client/tournament'
 require 'metakgs/client/tournaments'
 require 'metakgs/version'
 require 'net/http'
+require 'time'
 require 'uri'
 
 module MetaKGS
@@ -134,10 +135,6 @@ module MetaKGS
         res = create_response response
       when Net::HTTPNotModified
         res = cached.merge_304 response
-      when Net::HTTPNotFound
-        raise MetaKGS::Error::ResourceNotFound
-      when Net::HTTPClientError, Net::HTTPServerError
-        raise MetaKGS::Error::ClientError
       else
         raise MetaKGS::Error, "don't know how to handle #{response}"
       end
@@ -182,8 +179,23 @@ module MetaKGS
         raise MetaKGS::Error::TimeoutError, evar
       end
 
-      logger.info('Response') { "#{response.code} #{response.message}" }
+      logger.info('Response') { response.code }
       logger.debug('Response') { response.to_hash }
+
+      case response
+      when Net::HTTPAccepted
+        if response.key? 'Retry-After'
+          delay = response['Retry-After']
+          delay = ( Time.httpdate(delay) - Time.now ).to_i if delay !~ /^\d+$/
+          raise MetaKGS::Error::TimeoutError, "retry after #{delay} seconds"
+        else
+          raise MetaKGS::Error::TimeoutError, response
+        end
+      when Net::HTTPNotFound
+        raise MetaKGS::Error::ResourceNotFound, response
+      when Net::HTTPClientError, Net::HTTPServerError
+        raise MetaKGS::Error::ClientError, response
+      end
 
       response
     end
