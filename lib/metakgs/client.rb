@@ -1,5 +1,7 @@
 require 'json'
+require 'logger'
 require 'metakgs/cache/null'
+require 'metakgs/error'
 require 'metakgs/http/header'
 require 'metakgs/http/response'
 require 'metakgs/client/archives'
@@ -18,7 +20,24 @@ module MetaKGS
     include MetaKGS::Client::Tournament
     include MetaKGS::Client::Tournaments
 
+    NET_HTTP_EXCEPTIONS = [
+      EOFError,
+      Errno::ECONNABORTED,
+      Errno::ECONNREFUSED,
+      Errno::ECONNRESET,
+      Errno::EHOSTUNREACH,
+      Errno::EINVAL,
+      Errno::ENETUNREACH,
+      Net::HTTPBadResponse,
+      Net::HTTPHeaderSyntaxError,
+      Net::ProtocolError,
+      SocketError,
+      Zlib::GzipFile::Error,
+    ]
+
     attr_accessor :cache
+    attr_accessor :shared_cache
+    attr_accessor :logger
     attr_accessor :read_timeout
     attr_accessor :open_timeout
     attr_accessor :api_endpoint
@@ -27,7 +46,9 @@ module MetaKGS
       @api_endpoint = args[:api_endpoint] || 'http://metakgs.org/api'
       @read_timeout = args[:read_timeout]
       @open_timeout = args[:open_timeout]
+      @logger = args[:logger] || Logger.new( STDERR )
       @cache = args[:cache] || MetaKGS::Cache::Null.new
+      @shared_cache = args[:shared_cache] || false
       self.default_header = args[:default_header] if args[:default_header]
       self.agent = args[:agent] if args.has_key? :agent
     end
@@ -52,10 +73,9 @@ module MetaKGS
 
     def get_json( path )
       response = get path
-      content_type = response.content_type || ""
-      return if response.code_type == Net::HTTPNotFound
-      raise "Not a JSON response" unless content_type == "application/json"
-      JSON.parse response.body
+      content_type = response.content_type || ''
+      return JSON.parse(response.body) if content_type == 'application/json'
+      raise MetaKGS::Error, 'Not a JSON response'
     end
 
     def get( path )
@@ -68,20 +88,32 @@ module MetaKGS
       header['If-None-Match'] = cached.etag if cached and cached.has_etag?
       header.if_modified_since = cached.last_modified if cached and cached.has_last_modified?
 
-      response = http_get URI(url), header
+      begin
+        response = http_get URI(url), header
+      rescue *NET_HTTP_EXCEPTIONS => evar
+        raise MetaKGS::Error::ConnectionFailed, evar
+      rescue Timeout::Error => evar
+        raise MetaKGS::Error::TimeoutError, evar
+      end
 
-      res = nil
       case response
-      when Net::HTTPOK, Net::HTTPNotFound
+      when Net::HTTPOK
         res = create_response response
       when Net::HTTPNotModified
         res = cached.merge_304 response
+      when Net::HTTPNotFound
+        raise MetaKGS::Error::ResourceNotFound
+      when Net::HTTPClientError, Net::HTTPServerError
+        raise MetaKGS::Error::ClientError
       else
-        response.value
-        raise "don't know how to handle #{response}"
+        raise MetaKGS::Error, "don't know how to handle #{response}"
       end
 
-      cache.store url, res if res.cacheable?
+      if res.cacheable? shared_cache
+        cache.store url, res
+      else
+        cache.delete url
+      end
 
       res
     end
@@ -104,6 +136,7 @@ module MetaKGS
       http = Net::HTTP.new( url.host, url.port )
       http.read_timeout = read_timeout if read_timeout
       http.open_timeout = open_timeout if open_timeout
+      http.set_debug_output logger if logger.debug?
       http.send method, url.path, header.to_hash
     end
 
