@@ -1,9 +1,10 @@
+require 'metakgs/error'
 require 'net/http'
 require 'time'
 
 module MetaKGS
   class HTTP
-    class Response
+    class CacheableResponse
 
       CACHEABLE_STATUS_CODES = [
         Net::HTTPOK,
@@ -26,7 +27,11 @@ module MetaKGS
     public
 
       def initialize( res )
-        @response = res
+        if CACHEABLE_STATUS_CODES.any? { |r| r === res }
+          @response = res
+        else
+          raise MetaKGS::Error, "Not a cacheable response: #{res}"
+        end
       end
 
       def merge_304( res )
@@ -35,17 +40,8 @@ module MetaKGS
 
       def merge_304!( res )
         raise "Not a 304 response: #{res}" unless Net::HTTPNotModified === res
-        raise "Not a cacheable response" unless cacheable_status_code?
         @response_304 = res
         self
-      end
-
-      def cacheable_status_code?
-        CACHEABLE_STATUS_CODES.any? { |res| res === response }
-      end
-
-      def code_type
-        response.class
       end
 
       def date
@@ -79,7 +75,8 @@ module MetaKGS
       end
 
       def etag
-        response['ETag']
+        res = response_304 || response
+        res['ETag']
       end
 
       def has_etag?
@@ -96,7 +93,7 @@ module MetaKGS
         value = {}
         directives.each do |directive|
           ( token, argument ) = directive.split '=', 2
-          value[token] = argument || true unless token.empty?
+          value[token.downcase] = argument || true unless token.empty?
         end
 
         [ 'max-age', 's-maxage' ].each do |token|
@@ -130,15 +127,17 @@ module MetaKGS
       end
 
       def cacheable?( shared_cache = false )
-        res = response_304 || response
         cache = cache_control || {}
 
         return false if cache['no-store']
         return false if shared_cache and cache['private']
-        return false if !cacheable_status_code?
         return false if !has_last_modified? and !has_etag?
 
         fresh?
+      end
+
+      def cacheable_in_shared_cache?
+        cacheable? true
       end
 
       def fresh?

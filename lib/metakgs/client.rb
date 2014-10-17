@@ -3,7 +3,7 @@ require 'logger'
 require 'metakgs/cache/null'
 require 'metakgs/error'
 require 'metakgs/http/header'
-require 'metakgs/http/response'
+require 'metakgs/http/cacheable_response'
 require 'metakgs/client/archives'
 require 'metakgs/client/top100'
 require 'metakgs/client/tournament'
@@ -112,14 +112,14 @@ module MetaKGS
     end
 
     def get_json( path )
-      response = get path
+      response = get uri_for(path)
       content_type = response.content_type || ''
       return JSON.parse(response.body) if content_type == 'application/json'
       raise MetaKGS::Error, 'Not a JSON response'
     end
 
     def get( path )
-      url = path =~ /^https?:\/\// ? path : uri_for(path)
+      url = uri_for path
       cached = cache.fetch url
 
       return cached if cached and cached.fresh?
@@ -132,14 +132,14 @@ module MetaKGS
 
       case response
       when Net::HTTPOK
-        res = create_response response
+        res = MetaKGS::HTTP::CacheableResponse.new( response )
       when Net::HTTPNotModified
         res = cached.merge_304 response
       else
         raise MetaKGS::Error, "don't know how to handle #{response}"
       end
 
-      if res.cacheable? shared_cache
+      if shared_cache ? res.cacheable_in_shared_cache? : res.cacheable?
         cache.store url, res
       else
         cache.delete url
@@ -149,14 +149,10 @@ module MetaKGS
     end
 
     def uri_for( path )
-      File.join api_endpoint, path
+      path =~ /^https?:\/\// ? path : File.join( api_endpoint, path )
     end
 
   private
-
-    def create_response( response )
-      MetaKGS::HTTP::Response.new( response )
-    end
 
     def http_get( *args )
       http_request :get, *args
