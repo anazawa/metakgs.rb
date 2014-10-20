@@ -22,15 +22,6 @@ module MetaKGS
         self['If-Modified-Since'] = value.httpdate
       end
 
-      def to_hash
-        hash = {}
-        each do |key, value|
-          hash[key] = value
-        end
-
-        hash
-      end
-
     end
   end
 end

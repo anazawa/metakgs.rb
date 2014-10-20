@@ -178,8 +178,13 @@ module MetaKGS
       logger.info('Request') { "#{method.upcase} #{url}" }
       logger.debug('Request') { header.to_hash }
 
+      initheader = {}
+      header.each do |key, value|
+        initheader[key] = value
+      end
+
       begin
-        response = http.send method, url.request_uri, header.to_hash
+        response = http.send method, url.request_uri, initheader
       rescue *NET_HTTP_EXCEPTIONS => evar
         raise MetaKGS::Error::ConnectionFailed, evar
       rescue Timeout::Error => evar
