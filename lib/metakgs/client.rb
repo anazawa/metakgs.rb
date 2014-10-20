@@ -133,11 +133,21 @@ module MetaKGS
       case response
       when Net::HTTPOK
         res = MetaKGS::HTTP::Response.new( response )
+      when Net::HTTPAccepted
+        if response.key? 'Retry-After'
+          delay = response['Retry-After']
+          delay = ( Time.httpdate(delay) - Time.now ).to_i if delay !~ /^\d+$/
+          raise MetaKGS::Error::TimeoutError, "retry after #{delay} seconds"
+        else
+          raise MetaKGS::Error::TimeoutError, response
+        end
       when Net::HTTPNotModified
         res = cached.merge_304 response
       else
         raise MetaKGS::Error, "don't know how to handle #{response}"
       end
+
+      return res unless res.cacheable_status_code?
 
       if shared_cache ? res.cacheable_in_shared_cache? : res.cacheable?
         cache.store url, res
@@ -151,6 +161,7 @@ module MetaKGS
     def uri_for( path )
       path =~ /^https?:\/\// ? path : File.join( api_endpoint, path )
     end
+
 
   private
 
@@ -179,14 +190,6 @@ module MetaKGS
       logger.debug('Response') { response.to_hash }
 
       case response
-      when Net::HTTPAccepted
-        if response.key? 'Retry-After'
-          delay = response['Retry-After']
-          delay = ( Time.httpdate(delay) - Time.now ).to_i if delay !~ /^\d+$/
-          raise MetaKGS::Error::TimeoutError, "retry after #{delay} seconds"
-        else
-          raise MetaKGS::Error::TimeoutError, response
-        end
       when Net::HTTPNotFound
         raise MetaKGS::Error::ResourceNotFound, response
       when Net::HTTPClientError, Net::HTTPServerError
