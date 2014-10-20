@@ -2,17 +2,16 @@ module MetaKGS
   class Cache
     class Null < Cache
 
-      def do_fetch( key )
+      def fetch_object( key )
       end
 
-      def do_store( object )
-        object
+      def store_object( object )
       end
 
-      def do_delete( key )
+      def delete_object( key )
       end
 
-      def do_keys
+      def object_keys
         []
       end
 

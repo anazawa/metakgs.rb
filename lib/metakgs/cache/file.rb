@@ -23,26 +23,16 @@ module MetaKGS
         end
       end
 
-    private
-
-      def filename_for( key )
-        Digest::MD5.hexdigest key
-      end
-
-      def path_to( filename )
-        ::File.join cache_root, filename
-      end
-
-      def do_fetch( key )
+      def fetch_object( key )
         marshal_load filename_for(key)
       end
 
-      def do_store( object )
+      def store_object( object )
         filename = filename_for object.key
         marshal_dump filename, object
       end
 
-      def do_keys
+      def object_keys
         keys = []
 
         Dir.foreach(cache_root) do |filename|
@@ -55,9 +45,19 @@ module MetaKGS
         keys
       end
 
-      def do_delete( key )
+      def delete_object( key )
         path = path_to filename_for(key)
         ::File.unlink path if ::File.file? path
+      end
+
+    private
+
+      def filename_for( key )
+        Digest::MD5.hexdigest key
+      end
+
+      def path_to( filename )
+        ::File.join cache_root, filename
       end
 
       def marshal_load( filename )
