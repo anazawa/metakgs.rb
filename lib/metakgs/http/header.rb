@@ -14,6 +14,10 @@ module MetaKGS
         Marshal.load( Marshal.dump(self) )
       end
 
+      def if_none_match=( value )
+        self['If-None-Match'] = value
+      end
+
       def if_modified_since=( value )
         self['If-Modified-Since'] = value.httpdate
       end

@@ -125,7 +125,7 @@ module MetaKGS
       return cached if cached and cached.fresh?
 
       header = default_header.dclone
-      header['If-None-Match'] = cached.etag if cached and cached.has_etag?
+      header.if_none_match = cached.etag if cached and cached.has_etag?
       header.if_modified_since = cached.last_modified if cached and cached.has_last_modified?
 
       response = http_get URI(url), header
