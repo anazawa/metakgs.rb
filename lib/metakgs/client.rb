@@ -3,7 +3,7 @@ require 'logger'
 require 'metakgs/cache/null'
 require 'metakgs/error'
 require 'metakgs/http/header'
-require 'metakgs/http/cacheable_response'
+require 'metakgs/http/response'
 require 'metakgs/client/archives'
 require 'metakgs/client/top100'
 require 'metakgs/client/tournament'
@@ -132,7 +132,7 @@ module MetaKGS
 
       case response
       when Net::HTTPOK
-        res = MetaKGS::HTTP::CacheableResponse.new( response )
+        res = MetaKGS::HTTP::Response.new( response )
       when Net::HTTPNotModified
         res = cached.merge_304 response
       else
@@ -158,7 +158,7 @@ module MetaKGS
       http_request :get, *args
     end
 
-    def http_request( method, url, header = default_header )
+    def http_request( method, url, header=default_header )
       http = Net::HTTP.new( url.host, url.port )
 
       http.read_timeout = read_timeout if read_timeout
