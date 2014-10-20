@@ -1,4 +1,5 @@
 require 'metakgs/http/response/cacheable'
+require 'net/http'
 
 module MetaKGS
   class HTTP
