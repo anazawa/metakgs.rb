@@ -1,5 +1,7 @@
 require 'digest'
+require 'fileutils'
 require 'metakgs/cache'
+require 'tempfile'
 require 'tmpdir'
 
 module MetaKGS
@@ -11,69 +13,78 @@ module MetaKGS
       def initialize( args = {} )
         super
 
-        if args.has_key?(:cache_root) then
+        if args.has_key? :cache_root
           @cache_root = args[:cache_root]
         else
           @cache_root = Dir.mktmpdir
-          ObjectSpace.define_finalizer(self, proc {
-            FileUtils.remove_entry_secure( cache_root )
-          })
+          ObjectSpace.define_finalizer self, proc {
+            FileUtils.remove_entry_secure cache_root
+          }
         end
       end
 
     private
 
-      def build_path( key )
-        ::File.join( cache_root, Digest::MD5.hexdigest(key) ) 
+      def filename_for( key )
+        Digest::MD5.hexdigest key
+      end
+
+      def path_to( filename )
+        ::File.join cache_root, filename
       end
 
       def do_fetch( key )
-        path = build_path key
-        read_file path
+        marshal_load filename_for(key)
       end
 
       def do_store( object )
-        path = build_path object.key
-        write_file path, object
+        filename = filename_for object.key
+        marshal_dump filename, object
       end
 
       def do_keys
         keys = []
+
         Dir.foreach(cache_root) do |filename|
           next if filename == '.' or filename == '..'
-          path = ::File.join( cache_root, filename )
-          object = ::File.file?( path ) && read_file( path )
-          keys.push( object.key ) if object
+          next unless ::File.file? path_to(filename)
+          object = marshal_load filename
+          keys.push object.key if object
         end
 
         keys
       end
 
       def do_delete( key )
-        path = build_path key
-        unlink_file path
+        path = path_to filename_for(key)
+        ::File.unlink path if ::File.file? path
       end
 
-      def read_file( path )
-        return unless ::File.exists?( path )
+      def marshal_load( filename )
+        path = path_to filename
+        object = nil
+
+        return unless ::File.exists? path
 
         begin
           ::File.open(path) do |file|
-            Marshal.load( file )
+            object = Marshal.load file
           end
         rescue => evar
           warn evar
         end
+
+        object
       end
 
-      def write_file( path, object )
-        ::File.open(path, 'w+') do |file|
-          Marshal.dump( object, file )
-        end
-      end
-         
-      def unlink_file( path )
-        ::File.unlink( path ) if ::File.file?( path )
+      def marshal_dump( filename, object )
+        path = path_to filename
+
+        tempfile = Tempfile.new '', cache_root
+        Marshal.dump object, tempfile
+        tempfile.close
+
+        ::File.rename tempfile.path, path
       end
 
     end
