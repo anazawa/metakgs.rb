@@ -30,6 +30,7 @@ module MetaKGS
     class ConnectionFailed < ClientError; end
     class TimeoutError     < ClientError; end
     class ResourceNotFound < ClientError; end
+    class ParsingError     < ClientError; end
 
   end
 end

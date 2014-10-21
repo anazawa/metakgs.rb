@@ -1,4 +1,3 @@
-require 'json'
 require 'logger'
 require 'metakgs/cache/null'
 require 'metakgs/error'
@@ -118,9 +117,7 @@ module MetaKGS
 
     def get_json( path )
       response = get uri_for(path)
-      content_type = response.content_type || ''
-      return JSON.parse response.body if content_type == 'application/json'
-      raise MetaKGS::Error, "Not a JSON response: #{content_type}"
+      response.body
     end
 
     def get( path )
@@ -135,7 +132,6 @@ module MetaKGS
       header.if_modified_since = cached.last_modified if cached and cached.has_last_modified?
 
       response = request :get, URI(url), header
-      response.extend MetaKGS::HTTP::Response
 
       case response
       when HTTPOK
@@ -149,6 +145,10 @@ module MetaKGS
         end
       when HTTPNotModified
         res = cached.merge_304 response
+      when HTTPNotFound
+        raise MetaKGS::Error::ResourceNotFound, response
+      when HTTPClientError, HTTPServerError
+        raise MetaKGS::Error::ClientError, response
       else
         raise "don't know how to handle #{response}"
       end
@@ -164,8 +164,8 @@ module MetaKGS
 
     def request( method, url, header = default_header )
       http = Net::HTTP.new( url.host, url.port )
-      http.read_timeout = read_timeout if read_timeout
       http.open_timeout = open_timeout if open_timeout
+      http.read_timeout = read_timeout if read_timeout
 
       initheader = {}
       header.each do |key, value|
@@ -186,14 +186,7 @@ module MetaKGS
       logger.info('Response') { response.code }
       logger.debug('Response') { response.to_hash }
 
-      case response
-      when HTTPNotFound
-        raise MetaKGS::Error::ResourceNotFound, response
-      when HTTPClientError, HTTPServerError
-        raise MetaKGS::Error::ClientError, response
-      end
-
-      response
+      response.extend MetaKGS::HTTP::Response
     end
 
   end

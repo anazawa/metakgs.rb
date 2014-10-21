@@ -1,3 +1,5 @@
+require 'json'
+require 'metakgs/error'
 require 'metakgs/http/response/cacheable'
 require 'net/http'
 require 'time'
@@ -6,21 +8,36 @@ module MetaKGS
   class HTTP
     module Response
 
+      include Net
+
       CACHEABLE_CLASSES = [
-        Net::HTTPOK,
-        Net::HTTPNonAuthoritativeInformation,
-        Net::HTTPNoContent,
-        Net::HTTPMultipleChoice,
-        Net::HTTPMovedPermanently,
-        Net::HTTPNotFound,
-        Net::HTTPMethodNotAllowed,
-        Net::HTTPGone,
-        Net::HTTPRequestURITooLong,
-        Net::HTTPNotImplemented,
+        HTTPOK,
+        HTTPNonAuthoritativeInformation,
+        HTTPNoContent,
+        HTTPMultipleChoice,
+        HTTPMovedPermanently,
+        HTTPNotFound,
+        HTTPMethodNotAllowed,
+        HTTPGone,
+        HTTPRequestURITooLong,
+        HTTPNotImplemented,
       ]
 
       def self.extended( response )
+        content_type = response.content_type || ''
+        body = response.body
+
+        begin
+          if content_type == 'application/json'
+            response.body = body.strip.empty? ? nil : JSON.parse( body )
+          end
+        rescue StandardError, SyntaxError => evar
+          raise MetaKGS::Error::ParsingError, evar
+        end
+
         response.extend Cacheable if response.cacheable_class?
+
+        return
       end
 
       def cacheable_class?
