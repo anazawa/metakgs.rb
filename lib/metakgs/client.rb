@@ -21,6 +21,7 @@ module MetaKGS
     include MetaKGS::Client::Top100
     include MetaKGS::Client::Tournament
     include MetaKGS::Client::Tournaments
+    include Net
 
     NET_HTTP_EXCEPTIONS = [
       EOFError,
@@ -87,9 +88,9 @@ module MetaKGS
 
     # Public: Replaces @default_header with the given header Hash.
     #
-    #   client.default_header({
+    #   client.default_header = {
     #     'User-Agent' => 'MyAgent/0.0.1'
-    #   })
+    #   }
     #
     def default_header=( value )
       @default_header = MetaKGS::HTTP::Header.new( value )
@@ -119,7 +120,7 @@ module MetaKGS
       response = get uri_for(path)
       content_type = response.content_type || ''
       return JSON.parse response.body if content_type == 'application/json'
-      raise MetaKGS::Error, 'Not a JSON response'
+      raise MetaKGS::Error, "Not a JSON response: #{content_type}"
     end
 
     def get( path )
@@ -137,19 +138,19 @@ module MetaKGS
       response.extend MetaKGS::HTTP::Response
 
       case response
-      when Net::HTTPOK
+      when HTTPOK
         res = response
-      when Net::HTTPAccepted
+      when HTTPAccepted
         if response.has_retry_after?
           delay = ( response.retry_after - Time.now ).to_i
           raise MetaKGS::Error::TimeoutError, "retry after #{delay} seconds"
         else
           raise MetaKGS::Error::TimeoutError, response
         end
-      when Net::HTTPNotModified
+      when HTTPNotModified
         res = cached.merge_304 response
       else
-        raise MetaKGS::Error, "don't know how to handle #{response}"
+        raise "don't know how to handle #{response}"
       end
 
       if shared_cache ? res.cacheable_in_shared_cache? : res.cacheable?
@@ -161,7 +162,7 @@ module MetaKGS
       res
     end
 
-    def request( method, url, header=default_header )
+    def request( method, url, header = default_header )
       http = Net::HTTP.new( url.host, url.port )
       http.read_timeout = read_timeout if read_timeout
       http.open_timeout = open_timeout if open_timeout
@@ -186,9 +187,9 @@ module MetaKGS
       logger.debug('Response') { response.to_hash }
 
       case response
-      when Net::HTTPNotFound
+      when HTTPNotFound
         raise MetaKGS::Error::ResourceNotFound, response
-      when Net::HTTPClientError, Net::HTTPServerError
+      when HTTPClientError, HTTPServerError
         raise MetaKGS::Error::ClientError, response
       end
 

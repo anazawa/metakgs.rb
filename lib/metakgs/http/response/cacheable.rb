@@ -5,6 +5,8 @@ module MetaKGS
     module Response
       module Cacheable
 
+        include Net
+
         def merge_304( response )
           res = clone
           res.initialize_http_header nil
@@ -17,8 +19,8 @@ module MetaKGS
         end
 
         def merge_304!( response )
-          unless Net::HTTPNotModified === response
-            raise ArgumentError, "not a 304 response: #{response}"
+          unless HTTPNotModified === response
+            raise ArgumentError, "Not a 304 response: #{response}"
           end
 
           %w( Date Age Expires Last-Modified ETag ).each do |key|
@@ -34,13 +36,19 @@ module MetaKGS
           self
         end
 
+        def add_fields( key, *values )
+          values.each do |value|
+            add_field key, value
+          end
+        end
+
         def cache_control
           value = {}
 
           return unless has_cache_control?
 
           get_fields('Cache-Control').each do |directive|
-            ( token, argument ) = directive.split '=', 2
+            token, argument = directive.split '=', 2
             value[token.downcase] = argument || true unless token.empty?
           end
 
@@ -65,7 +73,7 @@ module MetaKGS
           has_date?
         end
 
-        def cacheable?( shared_cache=false )
+        def cacheable?( shared_cache = false )
           control = cache_control || {}
 
           return false if control['no-store']
@@ -89,14 +97,6 @@ module MetaKGS
           lifetime = control['s-maxage'] || control['max-age']
           lifetime = ( Time.now - expires ).to_i if !lifetime and has_expires?
           lifetime
-        end
-
-      private
-
-        def add_fields( key, *values )
-          values.each do |value|
-            add_field key, value
-          end
         end
 
       end
