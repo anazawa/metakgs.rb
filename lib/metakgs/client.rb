@@ -111,6 +111,10 @@ module MetaKGS
       default_header['User-Agent'] = value
     end
 
+    def uri_for( path )
+      path =~ /^https?:\/\// ? path : File.join( api_endpoint, path )
+    end
+
     def get_json( path )
       response = get uri_for(path)
       content_type = response.content_type || ''
@@ -120,15 +124,17 @@ module MetaKGS
 
     def get( path )
       url = uri_for path
-      cached = cache.fetch url
+      key = "GET #{url}"
+      cached = cache.fetch key
 
       return cached if cached and cached.fresh?
 
-      header = default_header.dclone
+      header = default_header.dup
       header.if_none_match = cached.etag if cached and cached.has_etag?
       header.if_modified_since = cached.last_modified if cached and cached.has_last_modified?
 
-      response = http_get URI(url), header
+      response = request :get, URI(url), header
+      response.extend MetaKGS::HTTP::Response
 
       case response
       when Net::HTTPOK
@@ -147,26 +153,15 @@ module MetaKGS
       end
 
       if shared_cache ? res.cacheable_in_shared_cache? : res.cacheable?
-        cache.store url, res
+        cache.store key, res
       else
-        cache.delete url
+        cache.delete key
       end
 
       res
     end
 
-    def uri_for( path )
-      path =~ /^https?:\/\// ? path : File.join( api_endpoint, path )
-    end
-
-  private
-
-    def http_get( *args )
-      response = http_request :get, *args
-      response.extend MetaKGS::HTTP::Response
-    end
-
-    def http_request( method, url, header=default_header )
+    def request( method, url, header=default_header )
       http = Net::HTTP.new( url.host, url.port )
       http.read_timeout = read_timeout if read_timeout
       http.open_timeout = open_timeout if open_timeout
