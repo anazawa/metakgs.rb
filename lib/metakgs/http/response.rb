@@ -1,11 +1,12 @@
 require 'metakgs/http/response/cacheable'
 require 'net/http'
+require 'time'
 
 module MetaKGS
   class HTTP
-    class Response
+    module Response
 
-      CACHEABLE_STATUS_CODES = [
+      CACHEABLE_CLASSES = [
         Net::HTTPOK,
         Net::HTTPNonAuthoritativeInformation,
         Net::HTTPNoContent,
@@ -18,27 +19,68 @@ module MetaKGS
         Net::HTTPNotImplemented,
       ]
 
-      def initialize( res )
-        @response = res
-        @cacheable_status_code = CACHEABLE_STATUS_CODES.any? { |r| r === res }
-        self.extend Cacheable if cacheable_status_code?
+      def self.extended( response )
+        response.extend Cacheable if response.cacheable_class?
       end
 
-      def cacheable_status_code?
-        @cacheable_status_code
+      def cacheable_class?
+        return @cacheable_class unless @cacheable_class.nil?
+        @cacheable_class = CACHEABLE_CLASSES.any? { |klass| klass === self }
       end
 
-      def content_type
-        response.content_type
+      def last_modified
+        has_last_modified? ? Time.httpdate( self['Last-Modified'] ) : nil
       end
 
-      def body
-        response.body
+      def has_last_modified?
+        key? 'Last-Modified'
       end
 
-    private
+      def etag
+        self['ETag']
+      end
 
-      attr_reader :response
+      def has_etag?
+        key? 'ETag'
+      end
+
+      def date
+        has_date? ? Time.httpdate( self['Date'] ) : nil
+      end
+
+      def has_date?
+        key? 'Date'
+      end
+
+      def expires
+        has_expires? ? Time.httpdate( self['Expires'] ) : nil
+      end
+
+      def has_expires?
+        key? 'Expires'
+      end
+
+      def retry_after
+        value = self['Retry-After']
+
+        if value and value =~ /^\d+$/
+          time = ( has_date? ? date : Time.now ) + value.to_i
+        elsif value
+          time = Time.httpdate value
+        else
+          time = nil
+        end
+
+        time
+      end
+
+      def has_retry_after?
+        key? 'Retry-After'
+      end
+
+      def dclone
+        Marshal.load Marshal.dump(self)
+      end
 
     end
   end

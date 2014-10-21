@@ -4,16 +4,29 @@ require 'time'
 
 module MetaKGS
   class HTTP
-    class Response
+    module Response
       module Cacheable
 
         def merge_304( res )
-          clone.merge_304! res
+          dclone.merge_304! res
         end
 
         def merge_304!( res )
           raise "Not a 304 response: #{res}" unless Net::HTTPNotModified === res
-          @response_304 = res
+
+          self['Date']          = res['Date']
+          self['Age']           = res['Age']
+          self['Expires']       = res['Expires']
+          self['Last-Modified'] = res['Last-Modified']
+          self['ETag']          = res['ETag']
+
+          if res.key? 'Cache-Control'
+            self.delete 'Cache-Control'
+            res.get_fields('Cache-Control').each do |value|
+              self.add_field 'Cache-Control', value
+            end
+          end
+
           self
         end
 
@@ -31,57 +44,13 @@ module MetaKGS
           cacheable? true
         end
 
-        def last_modified
-          res = response_304 || response
-          res.key?('Last-Modified') ? Time.httpdate( res['Last-Modified'] ) : nil
-        end
-
-        def has_last_modified?
-          res = response_304 || response
-          res.key? 'Last-Modified'
-        end
-
-        def etag
-          res = response_304 || response
-          res['ETag']
-        end
-
-        def has_etag?
-          res = response_304 || response
-          res.key? 'ETag'
-        end
-
         def fresh?
           lifetime = freshness_lifetime
           has_age? && lifetime ? lifetime > age : false
         end
 
-      private
-
-        attr_accessor :response_304
-
-        def date
-          res = response_304 || response
-          res.key?('Date') ? Time.httpdate( res['Date'] ) : nil
-        end
-
-        def has_date?
-          res = response_304 || response
-          res.key? 'Date'
-        end
-        def expires
-          res = response_304 || response
-          res.key?('Expires') ? Time.httpdate( res['Expires'] ) : nil
-        end
-
-        def has_expires?
-          res = response_304 || response
-          res.key? 'Expires'
-        end
-
         def cache_control
-          res = response_304 || response
-          directives = res.get_fields 'Cache-Control'
+          directives = get_fields 'Cache-Control'
 
           return unless directives
 
@@ -94,7 +63,7 @@ module MetaKGS
           [ 'max-age', 's-maxage' ].each do |token|
             next unless value.key? token
             value[token] = value[token].to_i
-            value[token] -= res['Age'].to_i if res.key? 'Age'
+            value[token] -= self['Age'].to_i if key? 'Age'
           end
 
           value

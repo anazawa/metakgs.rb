@@ -114,7 +114,7 @@ module MetaKGS
     def get_json( path )
       response = get uri_for(path)
       content_type = response.content_type || ''
-      return JSON.parse(response.body) if content_type == 'application/json'
+      return JSON.parse response.body if content_type == 'application/json'
       raise MetaKGS::Error, 'Not a JSON response'
     end
 
@@ -132,11 +132,10 @@ module MetaKGS
 
       case response
       when Net::HTTPOK
-        res = MetaKGS::HTTP::Response.new( response )
+        res = response
       when Net::HTTPAccepted
-        if response.key? 'Retry-After'
-          delay = response['Retry-After']
-          delay = ( Time.httpdate(delay) - Time.now ).to_i if delay !~ /^\d+$/
+        if response.has_retry_after?
+          delay = ( response.retry_after - Time.now ).to_i
           raise MetaKGS::Error::TimeoutError, "retry after #{delay} seconds"
         else
           raise MetaKGS::Error::TimeoutError, response
@@ -146,8 +145,6 @@ module MetaKGS
       else
         raise MetaKGS::Error, "don't know how to handle #{response}"
       end
-
-      return res unless res.cacheable_status_code?
 
       if shared_cache ? res.cacheable_in_shared_cache? : res.cacheable?
         cache.store url, res
@@ -162,26 +159,25 @@ module MetaKGS
       path =~ /^https?:\/\// ? path : File.join( api_endpoint, path )
     end
 
-
   private
 
     def http_get( *args )
-      http_request :get, *args
+      response = http_request :get, *args
+      response.extend MetaKGS::HTTP::Response
     end
 
     def http_request( method, url, header=default_header )
       http = Net::HTTP.new( url.host, url.port )
-
       http.read_timeout = read_timeout if read_timeout
       http.open_timeout = open_timeout if open_timeout
-
-      logger.info('Request') { "#{method.upcase} #{url}" }
-      logger.debug('Request') { header.to_hash }
 
       initheader = {}
       header.each do |key, value|
         initheader[key] = value
       end
+
+      logger.info('Request') { "#{method.upcase} #{url}" }
+      logger.debug('Request') { header.to_hash }
 
       begin
         response = http.send method, url.request_uri, initheader
