@@ -6,13 +6,19 @@ module MetaKGS
       module Cacheable
 
         def merge_304( response )
-          res = Marshal.load Marshal.dump(self)
+          res = clone
+          res.initialize_http_header nil
+
+          to_hash.each do |key, values|
+            res.add_fields key, *values
+          end
+
           res.merge_304! response
         end
 
         def merge_304!( response )
           unless Net::HTTPNotModified === response
-            raise "Not a 304 response: #{response}"
+            raise ArgumentError, "not a 304 response: #{response}"
           end
 
           %w( Date Age Expires Last-Modified ETag ).each do |key|
@@ -21,10 +27,8 @@ module MetaKGS
 
           %w( Cache-Control ).each do |key|
             delete key
-            next unless response.key? key
-            response.get_fields(key).each do |value|
-              add_field key, value
-            end
+            values = response.get_fields key
+            add_fields key, *values if values
           end
 
           self
@@ -85,6 +89,14 @@ module MetaKGS
           lifetime = control['s-maxage'] || control['max-age']
           lifetime = ( Time.now - expires ).to_i if !lifetime and has_expires?
           lifetime
+        end
+
+      private
+
+        def add_fields( key, *values )
+          values.each do |value|
+            add_field key, value
+          end
         end
 
       end
