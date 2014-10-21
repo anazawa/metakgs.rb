@@ -78,10 +78,6 @@ module MetaKGS
         key? 'Retry-After'
       end
 
-      def dclone
-        Marshal.load Marshal.dump(self)
-      end
-
     end
   end
 end
