@@ -1,5 +1,3 @@
-require 'metakgs/client/paginator'
-
 module MetaKGS
   class Client
     module Tournaments
@@ -7,31 +5,16 @@ module MetaKGS
       # http://metakgs.org/docs#get-api-tournaments
       def get_tournaments( query = {} )
         year = query[:year] || Time.now.gmtime.year
-        raise ":year is invalid" unless year.is_a? Integer and year >= 2000
-        do_get_tournaments "tournaments/#{year}"
+        raise ':year is invalid' unless year.is_a? Integer and year >= 2000
+        get_content "tournaments/#{year}"
       end
 
-      def do_get_tournaments( url )
-        client = self
-        body = get_json url
-        content = body && body["content"]
-        link = body && body["link"]
-
-        return unless body
-
-        content.define_singleton_method(:link) { link }
-        content.define_singleton_method(:get) { |url| client.do_get_tournaments(url) }
-        content.extend( MetaKGS::Client::Paginator )
-
-        content
-      end
+      alias :tourns :get_tournaments
 
       def get_tournament_list( query = {} )
-        content = get_tournaments query
-        content && content["tournaments"]
+        get_tournaments(query)['tournaments']
       end
 
-      alias :tourns     :get_tournaments
       alias :tourn_list :get_tournament_list
 
     end
