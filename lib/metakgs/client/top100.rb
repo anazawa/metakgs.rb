@@ -3,13 +3,11 @@ module MetaKGS
     module Top100
 
       def get_top100
-        body = get_json 'top100'
-        body && body['content']
+        get_content 'top100'
       end
 
       def get_top100_players
-        content = get_top100
-        content && content['players']
+        get_top100['players']
       end
 
       alias :top100         :get_top100
@@ -18,3 +16,4 @@ module MetaKGS
     end
   end
 end
+

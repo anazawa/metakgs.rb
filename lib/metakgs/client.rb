@@ -7,6 +7,7 @@ require 'metakgs/client/archives'
 require 'metakgs/client/top100'
 require 'metakgs/client/tournament'
 require 'metakgs/client/tournaments'
+require 'metakgs/client/paginator'
 require 'metakgs/version'
 require 'net/http'
 require 'time'
@@ -115,9 +116,17 @@ module MetaKGS
       path =~ /^https?:\/\// ? path : File.join( api_endpoint, path )
     end
 
-    def get_json( path )
-      response = get uri_for(path)
-      response.body
+    def get_content( path )
+      response = get path
+      content = response.body['content'].dup
+
+      if response.body.key? 'link'
+        content.extend MetaKGS::Client::Paginator
+        content.link = response.body['link'].dup
+        content.client = self
+      end
+
+      content
     end
 
     def get( path )

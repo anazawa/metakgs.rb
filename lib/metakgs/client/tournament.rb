@@ -1,80 +1,47 @@
-require 'metakgs/client/tournament/paginator'
-
 module MetaKGS
   class Client
     module Tournament
 
       def get_tournament( query = {} )
         id = query[:id]
-        raise ":id is required" unless query.has_key?(:id)
-        raise ":id is invalid" unless id.is_a? Integer and id > 0
-        do_get_tournament "tournament/#{id}"
-      end
-
-      def do_get_tournament( url )
-        body = get_json url
-        body && body["content"]
+        raise ArgumentError, ':id is required' unless query.has_key? :id
+        raise ArgumentError, ':id is invalid' unless id.is_a? Integer and id > 0
+        get_content "tournament/#{id}"
       end
 
       def get_tournament_rounds( query = {} )
-        content = get_tournament query
-        content && content["rounds"]
+        get_tournament(query)['rounds']
       end
 
       def get_tournament_round( query = {} )
         id = query[:id]
         round = query[:round]
 
-        raise ":id is required" unless query.has_key?(:id)
-        raise ":round is required" unless query.has_key?(:round)
-        raise ":id is invalid" unless id.is_a? Integer and id > 0
-        raise ":round is invalid" unless round.is_a? Integer and round > 0
+        raise ArgumentError, ':id is required' unless query.has_key? :id
+        raise ArgumentError, ':round is required' unless query.has_key? :round
+        raise ArgumentError, ':id is invalid' unless id.is_a? Integer and id > 0
+        raise ArgumentError, ':round is invalid' unless round.is_a? Integer and round > 0
 
-        do_get_tournament_round "tournament/#{id}/round/#{round}"
-      end
-
-      def do_get_tournament_round( url )
-        client = self
-        body = get_json url
-        content = body && body["content"]
-        round = content && content["round"]
-        rounds = content && content["rounds"]
-
-        return unless body
-
-        content.define_singleton_method(:round) { round }
-        content.define_singleton_method(:rounds) { rounds }
-        content.define_singleton_method(:get) { |url| client.do_get_tournament_round(url) }
-        content.extend( MetaKGS::Client::Tournament::Paginator )
-
-        content
+        get_content "tournament/#{id}/round/#{round}"
       end
 
       def get_tournament_games( query = {} )
-        content = get_tournament_round query
-        content && content["games"]
+        get_tournament_round(query)['games']
       end
 
       def get_tournament_byes( query = {} )
-        content = get_tournament_round query
-        content && content["byes"]
+        get_tournament_round(query)['byes']
       end
 
       def get_tournament_entrants( query = {} )
         id = query[:id]
-        raise ":id is required" unless query.has_key?(:id)
-        raise ":id is invalid" unless id.is_a? Integer and id > 0
-        do_get_tournament_entrants "tournament/#{id}/entrants"
+        raise ArgumentError, ':id is required' unless query.has_key? :id
+        raise ArgumentError, ':id is invalid' unless id.is_a? Integer and id > 0
+        get_content "tournament/#{id}/entrants"
       end
 
-      def do_get_tournament_entrants( url )
-        body = get_json url
-        body && body["content"]
-      end
-
-      def get_tournament_entrant_list( url )
-        content = get_tournament_entrants url
-        content && content["entrants"]
+      def get_tournament_entrant_list( query = {} )
+        get_tournament_entrants(query)['entrants']
       end
 
       alias :tourn              :get_tournament
@@ -88,3 +55,4 @@ module MetaKGS
     end
   end
 end
+
