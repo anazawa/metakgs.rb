@@ -5,7 +5,7 @@ require 'metakgs/version'
 Gem::Specification.new do |gem|
   gem.name = 'metakgs'
   gem.version = MetaKGS::VERSION
-  gem.date = '2014-10-20'
+  gem.date = '2014-10-23'
   gem.summary = 'Ruby toolkit for working with the MetaKGS API'
   gem.description = 'Simple wrapper for the MetaKGS API'
   gem.files = %w( Rakefile metakgs.gemspec README.md )
