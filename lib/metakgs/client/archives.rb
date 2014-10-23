@@ -20,6 +20,26 @@ module MetaKGS
         get_archives(query)['games']
       end
 
+      def get_latest_rank_by_name( name )
+        archives = get_archives :user => name
+        rank = nil
+
+        while archives and rank.nil?
+          game = archives['games'].first
+          if game and game['owner']
+            rank = game['owner']['rank'] || ''
+          elsif game
+            players = [ *game['black'], *game['white'] ]
+            rank = players.find { |player| player['name'] == name }['rank']
+            rank ||= ''
+          else
+            archives = archives.prev
+          end
+        end
+
+        rank
+      end
+
       alias :archives :get_archives
       alias :games    :get_games
 
