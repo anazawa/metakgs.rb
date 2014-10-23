@@ -11,7 +11,7 @@ class TestHTTPResponse < Test::Unit::TestCase
 
   def test_body
     response = build_200({ 'Content-Type' => 'application/json' }, '{"foo":"bar"}')
-    assert_equal response.body, { 'foo' => 'bar' }
+    assert_equal { 'foo' => 'bar' }, response.body
 
     assert_raise MetaKGS::Error::ParsingError do
       build_200({ 'Content-Type' => 'application/json' }, '{"foo":"bar"')
@@ -21,7 +21,7 @@ class TestHTTPResponse < Test::Unit::TestCase
   def test_merge_304
     ok = build_200({ 'Date' => 'Thu, 23 Oct 2014 17:47:03 GMT' })
     not_modified = build_304({ 'Date' => 'Fri, 24 Oct 2014 17:47:03 GMT' })
-    assert_equal ok.merge_304(not_modified)['Date'], 'Fri, 24 Oct 2014 17:47:03 GMT'
+    assert_equal 'Fri, 24 Oct 2014 17:47:03 GMT', ok.merge_304(not_modified)['Date']
 
     assert_raise ArgumentError do
       build_200.merge_304 build_202
@@ -30,9 +30,8 @@ class TestHTTPResponse < Test::Unit::TestCase
 
   def test_cache_control
     response = build_200
-    response.add_field 'Cache-Control', 'public'
-    response.add_field 'Cache-Control', 'max-age=60'
-    assert_equal response.cache_control, { 'public' => true, 'max-age' => 60 }
+    response.add_fields 'Cache-Control', 'public', 'max-age=60'
+    assert_equal { 'public' => true, 'max-age' => 60 }, response.cache_control
   end
 
   def build_200( *args )
@@ -52,7 +51,6 @@ class TestHTTPResponse < Test::Unit::TestCase
     response.define_singleton_method(:body) { body }
     response.define_singleton_method(:body=) { |value| body = value }
     response.initialize_http_header header
-    response.body = body
     response.extend MetaKGS::HTTP::Response
   end
 
