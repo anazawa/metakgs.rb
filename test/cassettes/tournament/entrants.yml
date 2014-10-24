@@ -1,0 +1,95 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://metakgs.org/api/tournament/123/entrants
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - MetaKGS Ruby Gem 0.0.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - ! '*/*'
+  response:
+    status:
+      code: 200
+      message: !binary |-
+        T0s=
+    headers:
+      !binary "U2VydmVy":
+      - !binary |-
+        bmdpbngvMS42LjI=
+      !binary "RGF0ZQ==":
+      - !binary |-
+        RnJpLCAyNCBPY3QgMjAxNCAwNjowMjowNiBHTVQ=
+      !binary "Q29udGVudC1UeXBl":
+      - !binary |-
+        YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD11dGYtOA==
+      !binary "VHJhbnNmZXItRW5jb2Rpbmc=":
+      - !binary |-
+        Y2h1bmtlZA==
+      !binary "Q29ubmVjdGlvbg==":
+      - !binary |-
+        a2VlcC1hbGl2ZQ==
+      !binary "Q2FjaGUtQ29udHJvbA==":
+      - !binary |-
+        bWF4LWFnZT0zNjAw
+      - !binary |-
+        cHVibGlj
+      !binary "TGFzdC1Nb2RpZmllZA==":
+      - !binary |-
+        VHVlLCAwNyBPY3QgMjAxNCAwMjo0NTozOCBHTVQ=
+      !binary "QWNjZXNzLUNvbnRyb2wtQWxsb3ctTWV0aG9kcw==":
+      - !binary |-
+        R0VU
+      !binary "QWNjZXNzLUNvbnRyb2wtQWxsb3ctT3JpZ2lu":
+      - !binary |-
+        Kg==
+      !binary "WC1Db250ZW50LVR5cGUtT3B0aW9ucw==":
+      - !binary |-
+        bm9zbmlmZg==
+      !binary "WC1GcmFtZS1PcHRpb25z":
+      - !binary |-
+        REVOWQ==
+      !binary "Q29udGVudC1FbmNvZGluZw==":
+      - !binary |-
+        Z3ppcA==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+        L/9R259Z8g5gflJC6nfK+/YdGKrhKTsZAAA=
+    http_version: 
+  recorded_at: Fri, 24 Oct 2014 06:02:06 GMT
+recorded_with: VCR 2.9.3
