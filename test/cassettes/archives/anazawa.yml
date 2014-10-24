@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://metakgs.org/api/archives/anazawa/2014/10
+    uri: http://metakgs.org/api/archives/anazawa
     body:
       encoding: US-ASCII
       string: ''
@@ -21,7 +21,7 @@ http_interactions:
       Server:
       - nginx/1.6.2
       Date:
-      - Fri, 24 Oct 2014 10:09:42 GMT
+      - Fri, 24 Oct 2014 16:32:01 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -45,5 +45,5 @@ http_interactions:
       encoding: UTF-8
       string: "{\"link\":{\"next\":null,\"first\":\"http://metakgs.org/api/archives/anazawa/2008/2\",\"prev\":\"http://metakgs.org/api/archives/anazawa/2014/9\",\"last\":\"http://metakgs.org/api/archives/anazawa\"},\"requested_at\":\"2014-10-24T05:34:11Z\",\"responded_at\":\"2014-10-24T05:34:12Z\",\"content\":{\"tgz_url\":\"http://www.gokgs.com/servlet/archives/en_US/anazawa-all-2014-10.tar.gz\",\"zip_url\":\"http://www.gokgs.com/servlet/archives/en_US/anazawa-all-2014-10.zip\",\"games\":[{\"owner\":null,\"board_size\":19,\"sgf_url\":\"http://files.gokgs.com/games/2014/10/10/anazawa-kawai1927.sgf\",\"white\":[{\"archives_url\":\"http://metakgs.org/api/archives/anazawa\",\"name\":\"anazawa\",\"rank\":\"1d\"}],\"black\":[{\"archives_url\":\"http://metakgs.org/api/archives/kawai1927\",\"name\":\"kawai1927\",\"rank\":\"1d\"}],\"started_at\":\"2014-10-10T04:47Z\",\"type\":\"Ranked\",\"handicap\":null,\"result\":\"B\\u002b5.5\"},{\"owner\":null,\"board_size\":19,\"sgf_url\":\"http://files.gokgs.com/games/2014/10/10/sdc1302-anazawa.sgf\",\"white\":[{\"archives_url\":\"http://metakgs.org/api/archives/sdc1302\",\"name\":\"sdc1302\",\"rank\":\"1d\"}],\"black\":[{\"archives_url\":\"http://metakgs.org/api/archives/anazawa\",\"name\":\"anazawa\",\"rank\":\"1d\"}],\"started_at\":\"2014-10-10T03:54Z\",\"type\":\"Ranked\",\"handicap\":null,\"result\":\"W\\u002bResign\"},{\"owner\":null,\"board_size\":19,\"sgf_url\":\"http://files.gokgs.com/games/2014/10/10/anazawa-nyoman.sgf\",\"white\":[{\"archives_url\":\"http://metakgs.org/api/archives/anazawa\",\"name\":\"anazawa\",\"rank\":\"1d\"}],\"black\":[{\"archives_url\":\"http://metakgs.org/api/archives/nyoman\",\"name\":\"nyoman\",\"rank\":\"1k\"}],\"started_at\":\"2014-10-10T02:21Z\",\"type\":\"Ranked\",\"handicap\":null,\"result\":\"W\\u002b8.5\"},{\"owner\":null,\"board_size\":19,\"sgf_url\":\"http://files.gokgs.com/games/2014/10/10/anazawa-matta.sgf\",\"white\":[{\"archives_url\":\"http://metakgs.org/api/archives/anazawa\",\"name\":\"anazawa\",\"rank\":\"1d\"}],\"black\":[{\"archives_url\":\"http://metakgs.org/api/archives/matta\",\"name\":\"matta\",\"rank\":\"1k\"}],\"started_at\":\"2014-10-10T01:27Z\",\"type\":\"Ranked\",\"handicap\":null,\"result\":\"B\\u002bResign\"},{\"owner\":null,\"board_size\":19,\"sgf_url\":\"http://files.gokgs.com/games/2014/10/10/fukuzenji-anazawa.sgf\",\"white\":[{\"archives_url\":\"http://metakgs.org/api/archives/fukuzenji\",\"name\":\"fukuzenji\",\"rank\":\"1d\"}],\"black\":[{\"archives_url\":\"http://metakgs.org/api/archives/anazawa\",\"name\":\"anazawa\",\"rank\":\"1d\"}],\"started_at\":\"2014-10-10T00:04Z\",\"type\":\"Ranked\",\"handicap\":null,\"result\":\"B\\u002bResign\"}]},\"request_url\":\"http://www.gokgs.com/gameArchives.jsp?user=anazawa&year=2014&month=10&oldAccounts=y\",\"message\":\"OK\"}"
     http_version: 
-  recorded_at: Fri, 24 Oct 2014 10:09:42 GMT
+  recorded_at: Fri, 24 Oct 2014 12:56:08 GMT
 recorded_with: VCR 2.9.3

@@ -4,8 +4,14 @@ module MetaKGS
 
       # http://metakgs.org/docs#get-api-tournaments
       def get_tournaments( query = {} )
-        year = query[:year] || Time.now.gmtime.year
-        raise ArgumentError, ':year is invalid' unless year.is_a? Integer and year >= 2000
+        year = query[:year]
+
+        return get_content 'tournaments' unless query.key? :year
+
+        unless year.is_a? Integer and year >= 2000
+          raise ArgumentError, ":year is invalid: '#{year}'"
+        end
+
         get_content "tournaments/#{year}"
       end
 

@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://metakgs.org/api/tournament/123/entrants
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - MetaKGS Ruby Gem 0.0.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.6.2
+      Date:
+      - Fri, 24 Oct 2014 16:32:02 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=3600
+      - public
+      Last-Modified:
+      - Tue, 07 Oct 2014 02:45:38 GMT
+      Access-Control-Allow-Methods:
+      - GET
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    body:
+      encoding: UTF-8
+      string: "{\"requested_at\":\"2014-10-07T02:45:36Z\",\"responded_at\":\"2014-10-07T02:45:38Z\",\"content\":{\"entrants\":[{\"name\":\"mrbeak\",\"position\":1,\"score\":4,\"sodos\":7,\"archives_url\":\"http://metakgs.org/api/archives/mrbeak\",\"sos\":7,\"notes\":\"Winner\",\"rank\":\"17k\"},{\"name\":\"JeonJi\",\"position\":2,\"score\":3,\"sodos\":6.5,\"archives_url\":\"http://metakgs.org/api/archives/JeonJi\",\"sos\":9.5,\"notes\":\"\",\"rank\":\"5k\"},{\"name\":\"ssmfung\",\"position\":2,\"score\":3,\"sodos\":6.5,\"archives_url\":\"http://metakgs.org/api/archives/ssmfung\",\"sos\":9.5,\"notes\":\"\",\"rank\":\"10k\"},{\"name\":\"vacation\",\"position\":2,\"score\":3,\"sodos\":6.5,\"archives_url\":\"http://metakgs.org/api/archives/vacation\",\"sos\":9.5,\"notes\":\"\",\"rank\":\"6k\"},{\"name\":\"trc\",\"position\":5,\"score\":3,\"sodos\":6,\"archives_url\":\"http://metakgs.org/api/archives/trc\",\"sos\":9,\"notes\":\"\",\"rank\":\"10k\"},{\"name\":\"fintiger\",\"position\":6,\"score\":3,\"sodos\":5.5,\"archives_url\":\"http://metakgs.org/api/archives/fintiger\",\"sos\":8.5,\"notes\":\"\",\"rank\":\"10k\"},{\"name\":\"simbad\",\"position\":6,\"score\":3,\"sodos\":5.5,\"archives_url\":\"http://metakgs.org/api/archives/simbad\",\"sos\":8.5,\"notes\":\"\",\"rank\":\"19k\"},{\"name\":\"GoMe\",\"position\":8,\"score\":3,\"sodos\":4.5,\"archives_url\":\"http://metakgs.org/api/archives/GoMe\",\"sos\":7.5,\"notes\":\"\",\"rank\":\"4k\"},{\"name\":\"DarkSilver\",\"position\":9,\"score\":3,\"sodos\":5,\"archives_url\":\"http://metakgs.org/api/archives/DarkSilver\",\"sos\":7,\"notes\":\"\",\"rank\":\"13k\"},{\"name\":\"sai160189\",\"position\":10,\"score\":3,\"sodos\":3.5,\"archives_url\":\"http://metakgs.org/api/archives/sai160189\",\"sos\":6.5,\"notes\":\"\",\"rank\":\"14k\"},{\"name\":\"uXs\",\"position\":11,\"score\":3,\"sodos\":5,\"archives_url\":\"http://metakgs.org/api/archives/uXs\",\"sos\":5,\"notes\":\"\",\"rank\":\"18k\"},{\"name\":\"ox1\",\"position\":12,\"score\":3,\"sodos\":3.5,\"archives_url\":\"http://metakgs.org/api/archives/ox1\",\"sos\":3.5,\"notes\":\"\",\"rank\":\"11k\"},{\"name\":\"odif\",\"position\":13,\"score\":2.5,\"sodos\":2.5,\"archives_url\":\"http://metakgs.org/api/archives/odif\",\"sos\":6.5,\"notes\":\"\",\"rank\":\"16k\"},{\"name\":\"galaxis\",\"position\":14,\"score\":2.5,\"sodos\":2,\"archives_url\":\"http://metakgs.org/api/archives/galaxis\",\"sos\":6,\"notes\":\"\",\"rank\":\"14k\"},{\"name\":\"i7\",\"position\":15,\"score\":2.5,\"sodos\":0.5,\"archives_url\":\"http://metakgs.org/api/archives/i7\",\"sos\":0.5,\"notes\":\"\",\"rank\":\"16k\"},{\"name\":\"mstarsup5\",\"position\":16,\"score\":2,\"sodos\":3,\"archives_url\":\"http://metakgs.org/api/archives/mstarsup5\",\"sos\":9,\"notes\":\"\",\"rank\":\"9k\"},{\"name\":\"AxelJ\",\"position\":17,\"score\":2,\"sodos\":2,\"archives_url\":\"http://metakgs.org/api/archives/AxelJ\",\"sos\":8,\"notes\":\"\",\"rank\":\"18k\"},{\"name\":\"cslater\",\"position\":18,\"score\":2,\"sodos\":2.5,\"archives_url\":\"http://metakgs.org/api/archives/cslater\",\"sos\":7.5,\"notes\":\"\",\"rank\":\"8k\"},{\"name\":\"Thedome\",\"position\":19,\"score\":2,\"sodos\":2,\"archives_url\":\"http://metakgs.org/api/archives/Thedome\",\"sos\":7.5,\"notes\":\"\",\"rank\":\"16k\"},{\"name\":\"StoneSage\",\"position\":20,\"score\":2,\"sodos\":3,\"archives_url\":\"http://metakgs.org/api/archives/StoneSage\",\"sos\":6,\"notes\":\"\",\"rank\":\"11k\"},{\"name\":\"Ozymandius\",\"position\":21,\"score\":2,\"sodos\":2,\"archives_url\":\"http://metakgs.org/api/archives/Ozymandius\",\"sos\":4,\"notes\":\"\",\"rank\":\"14k\"},{\"name\":\"AtledK\",\"position\":22,\"score\":2,\"sodos\":1,\"archives_url\":\"http://metakgs.org/api/archives/AtledK\",\"sos\":4,\"notes\":\"\",\"rank\":\"7k\"},{\"name\":\"revo\",\"position\":23,\"score\":1.5,\"sodos\":1,\"archives_url\":\"http://metakgs.org/api/archives/revo\",\"sos\":7,\"notes\":\"\",\"rank\":\"11k\"},{\"name\":\"Unicum\",\"position\":24,\"score\":1.5,\"sodos\":1,\"archives_url\":\"http://metakgs.org/api/archives/Unicum\",\"sos\":6,\"notes\":\"\",\"rank\":\"7k\"},{\"name\":\"acmh7\",\"position\":25,\"score\":1.5,\"sodos\":0,\"archives_url\":\"http://metakgs.org/api/archives/acmh7\",\"sos\":6,\"notes\":\"\",\"rank\":\"6k\"},{\"name\":\"flavien\",\"position\":26,\"score\":1.5,\"sodos\":0.5,\"archives_url\":\"http://metakgs.org/api/archives/flavien\",\"sos\":5.5,\"notes\":\"\",\"rank\":\"23k\"},{\"name\":\"Mercedes\",\"position\":27,\"score\":1.5,\"sodos\":0,\"archives_url\":\"http://metakgs.org/api/archives/Mercedes\",\"sos\":3,\"notes\":\"\",\"rank\":\"14k\"},{\"name\":\"retesz\",\"position\":27,\"score\":1.5,\"sodos\":0,\"archives_url\":\"http://metakgs.org/api/archives/retesz\",\"sos\":3,\"notes\":\"\",\"rank\":\"10k\"},{\"name\":\"gregfer\",\"position\":29,\"score\":1,\"sodos\":2,\"archives_url\":\"http://metakgs.org/api/archives/gregfer\",\"sos\":10.5,\"notes\":\"\",\"rank\":\"13k\"},{\"name\":\"D239500800\",\"position\":30,\"score\":1,\"sodos\":2,\"archives_url\":\"http://metakgs.org/api/archives/D239500800\",\"sos\":9.5,\"notes\":\"\",\"rank\":\"14k\"},{\"name\":\"Darkmoore\",\"position\":31,\"score\":1,\"sodos\":1,\"archives_url\":\"http://metakgs.org/api/archives/Darkmoore\",\"sos\":9,\"notes\":\"\",\"rank\":\"17k\"},{\"name\":\"Gnolli\",\"position\":32,\"score\":1,\"sodos\":1,\"archives_url\":\"http://metakgs.org/api/archives/Gnolli\",\"sos\":8,\"notes\":\"\",\"rank\":\"9k\"},{\"name\":\"olczyk\",\"position\":33,\"score\":1,\"sodos\":0.5,\"archives_url\":\"http://metakgs.org/api/archives/olczyk\",\"sos\":6.5,\"notes\":\"\",\"rank\":\"15k\"},{\"name\":\"Bentham\",\"position\":34,\"score\":1,\"sodos\":0.5,\"archives_url\":\"http://metakgs.org/api/archives/Bentham\",\"sos\":4.5,\"notes\":\"Quit
+        before round 3\",\"rank\":\"16k\"},{\"name\":\"kilroy\",\"position\":35,\"score\":1,\"sodos\":0,\"archives_url\":\"http://metakgs.org/api/archives/kilroy\",\"sos\":4.5,\"notes\":\"\",\"rank\":\"8k\"},{\"name\":\"sebos2013\",\"position\":35,\"score\":1,\"sodos\":0,\"archives_url\":\"http://metakgs.org/api/archives/sebos2013\",\"sos\":4.5,\"notes\":\"\",\"rank\":\"10k\"},{\"name\":\"Rooibos\",\"position\":37,\"score\":0.5,\"sodos\":0,\"archives_url\":\"http://metakgs.org/api/archives/Rooibos\",\"sos\":6,\"notes\":\"\",\"rank\":\"16k\"},{\"name\":\"thesee\",\"position\":38,\"score\":0.5,\"sodos\":0,\"archives_url\":\"http://metakgs.org/api/archives/thesee\",\"sos\":4.5,\"notes\":\"\",\"rank\":\"18k\"},{\"name\":\"Shu04\",\"position\":39,\"score\":0,\"sodos\":0,\"archives_url\":\"http://metakgs.org/api/archives/Shu04\",\"sos\":1.5,\"notes\":\"Quit
+        before round 2\",\"rank\":\"6k\"}],\"name\":\"September Tournament, American/European
+        daytime, 4k Division\",\"rounds\":[{\"url\":\"http://metakgs.org/api/tournament/123/round/1\",\"round\":1,\"end_at\":\"2005-09-24T19:00Z\",\"start_at\":\"2005-09-24T17:00Z\"},{\"url\":\"http://metakgs.org/api/tournament/123/round/2\",\"round\":2,\"end_at\":\"2005-09-24T21:00Z\",\"start_at\":\"2005-09-24T19:00Z\"},{\"url\":\"http://metakgs.org/api/tournament/123/round/3\",\"round\":3,\"end_at\":\"2005-09-25T19:00Z\",\"start_at\":\"2005-09-25T17:00Z\"},{\"url\":\"http://metakgs.org/api/tournament/123/round/4\",\"round\":4,\"end_at\":\"2005-09-25T21:00Z\",\"start_at\":\"2005-09-25T19:00Z\"}],\"id\":123,\"entrants_url\":\"http://metakgs.org/api/tournament/123/entrants\"},\"message\":\"OK\",\"request_url\":\"http://www.gokgs.com/tournEntrants.jsp?id=123&sort=s\"}"
+    http_version: 
+  recorded_at: Fri, 24 Oct 2014 12:56:10 GMT
+recorded_with: VCR 2.9.3

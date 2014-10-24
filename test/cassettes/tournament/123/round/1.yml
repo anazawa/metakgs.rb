@@ -21,7 +21,7 @@ http_interactions:
       Server:
       - nginx/1.6.2
       Date:
-      - Fri, 24 Oct 2014 10:09:43 GMT
+      - Fri, 24 Oct 2014 16:32:03 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -49,5 +49,5 @@ http_interactions:
         show\",\"rank\":\"14k\"},{\"archives_url\":\"http://metakgs.org/api/archives/i7\",\"name\":\"i7\",\"type\":\"Requested\",\"rank\":\"16k\"},{\"archives_url\":\"http://metakgs.org/api/archives/uXs\",\"name\":\"uXs\",\"type\":\"Requested\",\"rank\":\"18k\"}],\"round\":1,\"name\":\"September
         Tournament, American/European daytime, 4k Division\",\"rounds\":[{\"url\":\"http://metakgs.org/api/tournament/123/round/1\",\"round\":1,\"end_at\":\"2005-09-24T19:00Z\",\"start_at\":\"2005-09-24T17:00Z\"},{\"url\":\"http://metakgs.org/api/tournament/123/round/2\",\"round\":2,\"end_at\":\"2005-09-24T21:00Z\",\"start_at\":\"2005-09-24T19:00Z\"},{\"url\":\"http://metakgs.org/api/tournament/123/round/3\",\"round\":3,\"end_at\":\"2005-09-25T19:00Z\",\"start_at\":\"2005-09-25T17:00Z\"},{\"url\":\"http://metakgs.org/api/tournament/123/round/4\",\"round\":4,\"end_at\":\"2005-09-25T21:00Z\",\"start_at\":\"2005-09-25T19:00Z\"}],\"id\":123,\"entrants_url\":\"http://metakgs.org/api/tournament/123/entrants\"},\"request_url\":\"http://www.gokgs.com/tournGames.jsp?id=123&round=1\",\"message\":\"OK\"}"
     http_version: 
-  recorded_at: Fri, 24 Oct 2014 10:09:43 GMT
+  recorded_at: Fri, 24 Oct 2014 12:56:10 GMT
 recorded_with: VCR 2.9.3

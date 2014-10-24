@@ -1,0 +1,156 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://metakgs.org/api/tournaments/2005
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - MetaKGS Ruby Gem 0.0.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.6.2
+      Date:
+      - Fri, 24 Oct 2014 16:32:03 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=3600
+      - public
+      Last-Modified:
+      - Fri, 24 Oct 2014 16:27:24 GMT
+      Access-Control-Allow-Methods:
+      - GET
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    body:
+      encoding: UTF-8
+      string: "{\"link\":{\"next\":\"http://metakgs.org/api/tournaments/2006\",\"first\":\"http://metakgs.org/api/tournaments/2001\",\"prev\":\"http://metakgs.org/api/tournaments/2004\",\"last\":\"http://metakgs.org/api/tournaments\"},\"requested_at\":\"2014-10-24T16:27:24Z\",\"responded_at\":\"2014-10-24T16:27:24Z\",\"content\":{\"tournaments\":[{\"notes\":\"Winner:
+        jerokfor\",\"url\":\"http://metakgs.org/api/tournament/139\",\"name\":\"December
+        Tournament, American/European Daytime Open Division\",\"id\":139},{\"notes\":\"Winner:
+        youcanfly\",\"url\":\"http://metakgs.org/api/tournament/138\",\"name\":\"December
+        Tournament, American/European Daytime Kyu Division\",\"id\":138},{\"notes\":\"Winner:
+        aoshi88\",\"url\":\"http://metakgs.org/api/tournament/140\",\"name\":\"December
+        Tournament, Asian Daytime Kyu Division\",\"id\":140},{\"notes\":\"Winner:
+        fab\",\"url\":\"http://metakgs.org/api/tournament/141\",\"name\":\"December
+        Tournament, Asian Daytime Open Division\",\"id\":141},{\"notes\":\"Winner:
+        indigoBot2\",\"url\":\"http://metakgs.org/api/tournament/137\",\"name\":\"Ninth
+        KGS Computer Go Tournament - Open division\",\"id\":137},{\"notes\":\"Winner:
+        gopp\",\"url\":\"http://metakgs.org/api/tournament/135\",\"name\":\"Ninth
+        KGS Computer Go Tournament - Formal division\",\"id\":135},{\"notes\":\"Winner:
+        kivirch\",\"url\":\"http://metakgs.org/api/tournament/134\",\"name\":\"November
+        Iron Man Tournament, Open Division\",\"id\":134},{\"notes\":\"Winner: blakki\",\"url\":\"http://metakgs.org/api/tournament/133\",\"name\":\"November
+        Iron Man Tournament, 30k to 4k Division\",\"id\":133},{\"notes\":\"Winner:
+        tlsBotExp1\",\"url\":\"http://metakgs.org/api/tournament/132\",\"name\":\"Eighth
+        KGS Computer Go Tournament - Open division\",\"id\":132},{\"notes\":\"Winner:
+        Dar51\",\"url\":\"http://metakgs.org/api/tournament/131\",\"name\":\"Eighth
+        KGS Computer Go Tournament - Formal division\",\"id\":131},{\"notes\":\"Winner:
+        fab\",\"url\":\"http://metakgs.org/api/tournament/128\",\"name\":\"October
+        Tournament, European/American daytime open division\",\"id\":128},{\"notes\":\"Winner:
+        vacation\",\"url\":\"http://metakgs.org/api/tournament/127\",\"name\":\"October
+        Tournament, European/American daytime 4k and under division\",\"id\":127},{\"notes\":\"Winner:
+        goshu\",\"url\":\"http://metakgs.org/api/tournament/130\",\"name\":\"October
+        Tournament, Asian daytime 4k and under division\",\"id\":130},{\"notes\":\"Winner:
+        GoMe\",\"url\":\"http://metakgs.org/api/tournament/129\",\"name\":\"October
+        Tournament, Asian daytime open division\",\"id\":129},{\"notes\":\"Winner:
+        GNU\",\"url\":\"http://metakgs.org/api/tournament/126\",\"name\":\"Seventh
+        KGS Computer Go Tournament - Open division\",\"id\":126},{\"notes\":\"Winner:
+        slugGo\",\"url\":\"http://metakgs.org/api/tournament/125\",\"name\":\"Seventh
+        KGS Computer Go Tournament - Formal division\",\"id\":125},{\"notes\":\"Winner:
+        mrbeak\",\"url\":\"http://metakgs.org/api/tournament/123\",\"name\":\"September
+        Tournament, American/European daytime, 4k Division\",\"id\":123},{\"notes\":\"Winner:
+        snowmen\",\"url\":\"http://metakgs.org/api/tournament/124\",\"name\":\"September
+        Tournament, American/European daytime, Open Division\",\"id\":124},{\"notes\":\"Winner:
+        ox1\",\"url\":\"http://metakgs.org/api/tournament/122\",\"name\":\"September
+        Tournament, Asian daytime, 4k Division\",\"id\":122},{\"notes\":\"Winner:
+        Dakre\",\"url\":\"http://metakgs.org/api/tournament/121\",\"name\":\"September
+        Tournament, Asian daytime, Open Division\",\"id\":121},{\"notes\":\"Tie; winners:
+        gonzoBot2, tlsBotExp1\",\"url\":\"http://metakgs.org/api/tournament/119\",\"name\":\"Sixth
+        KGS Computer Go Tournament - Open division\",\"id\":119},{\"notes\":\"Tie;
+        winners: GNU, gonzoBot, viking5\",\"url\":\"http://metakgs.org/api/tournament/118\",\"name\":\"Sixth
+        KGS Computer Go Tournament - Formal division\",\"id\":118},{\"notes\":\"Winner:
+        snowmen\",\"url\":\"http://metakgs.org/api/tournament/113\",\"name\":\"August
+        American/European Daytime Tournament\",\"id\":113},{\"notes\":\"Winner: sss\",\"url\":\"http://metakgs.org/api/tournament/117\",\"name\":\"August
+        Asian Daytime Tournament\",\"id\":117},{\"notes\":\"Winner: GnuGo2\",\"url\":\"http://metakgs.org/api/tournament/112\",\"name\":\"Fifth
+        KGS Computer Go Tournament - Open division\",\"id\":112},{\"notes\":\"Winner:
+        GNU\",\"url\":\"http://metakgs.org/api/tournament/111\",\"name\":\"Fifth KGS
+        Computer Go Tournament - Formal division\",\"id\":111},{\"notes\":\"Winner:
+        Ashari\",\"url\":\"http://metakgs.org/api/tournament/108\",\"name\":\"July
+        Tournament, American/European Daytime Open Division\",\"id\":108},{\"notes\":\"Winner:
+        ox1\",\"url\":\"http://metakgs.org/api/tournament/105\",\"name\":\"July Tournament,
+        American/European Daytime Kyu Division\",\"id\":105},{\"notes\":\"Winner:
+        ox1\",\"url\":\"http://metakgs.org/api/tournament/109\",\"name\":\"July Tournament,
+        Asian Daytime Kyu Division\",\"id\":109},{\"notes\":\"Winner: erc\",\"url\":\"http://metakgs.org/api/tournament/110\",\"name\":\"July
+        Tournament, Asian Daytime Open Division\",\"id\":110},{\"notes\":\"Winner:
+        tlsBotExp1\",\"url\":\"http://metakgs.org/api/tournament/104\",\"name\":\"Fourth
+        KGS Computer Go Tournament - Open division\",\"id\":104},{\"notes\":\"Winner:
+        AyaBot\",\"url\":\"http://metakgs.org/api/tournament/103\",\"name\":\"Fourth
+        KGS Computer Go Tournament - Formal division\",\"id\":103},{\"notes\":\"Winner:
+        sss\",\"url\":\"http://metakgs.org/api/tournament/96\",\"name\":\"June Tournament,
+        4k up Division, American/European Daytime\",\"id\":96},{\"notes\":\"Winner:
+        ox1\",\"url\":\"http://metakgs.org/api/tournament/93\",\"name\":\"June Tournament,
+        5k down Division, American/European Daytime\",\"id\":93},{\"notes\":\"Winner:
+        hmph\",\"url\":\"http://metakgs.org/api/tournament/95\",\"name\":\"June Tournament,
+        4k up Division, Asian Daytime\",\"id\":95},{\"notes\":\"Winner: Casablanca\",\"url\":\"http://metakgs.org/api/tournament/94\",\"name\":\"June
+        Tournament, 5k down Division, Asian Daytime\",\"id\":94},{\"notes\":\"Winner:
+        GNU\",\"url\":\"http://metakgs.org/api/tournament/92\",\"name\":\"Third KGS
+        Computer Go Tournament - Open division\",\"id\":92},{\"notes\":\"Winner: slugGo\",\"url\":\"http://metakgs.org/api/tournament/91\",\"name\":\"Third
+        KGS Computer Go Tournament - Formal division\",\"id\":91},{\"notes\":\"Winner:
+        Arctic\",\"url\":\"http://metakgs.org/api/tournament/88\",\"name\":\"May Iron
+        Man Tournament, 4k to 9d Division\",\"id\":88},{\"notes\":\"Winner: ox1\",\"url\":\"http://metakgs.org/api/tournament/89\",\"name\":\"May
+        Iron Man Tournament, 30k to 5k Division\",\"id\":89},{\"notes\":\"Winner:
+        laole\",\"url\":\"http://metakgs.org/api/tournament/90\",\"name\":\"April
+        Playoff\",\"id\":90},{\"notes\":\"Winner: AyaBot\",\"url\":\"http://metakgs.org/api/tournament/84\",\"name\":\"Second
+        KGS Computer Go Tournament\",\"id\":84},{\"notes\":\"Winner: laole\",\"url\":\"http://metakgs.org/api/tournament/85\",\"name\":\"April
+        KGS Plus Tournament, Division 1\",\"id\":85},{\"notes\":\"Winner: sss\",\"url\":\"http://metakgs.org/api/tournament/86\",\"name\":\"April
+        KGS Plus Tournament, Division 2\",\"id\":86},{\"notes\":\"Winner: Itryplaygo\",\"url\":\"http://metakgs.org/api/tournament/87\",\"name\":\"Test
+        McMahon Tournament\",\"id\":87},{\"notes\":\"Winner: GNU\",\"url\":\"http://metakgs.org/api/tournament/82\",\"name\":\"First
+        KGS Computer Go Tournament\",\"id\":82},{\"notes\":\"Winner: aitkensam\",\"url\":\"http://metakgs.org/api/tournament/79\",\"name\":\"March
+        KGS Plus Tournament, 5k and under, American daytime\",\"id\":79},{\"notes\":\"Winner:
+        musha\",\"url\":\"http://metakgs.org/api/tournament/80\",\"name\":\"March
+        KGS Plus Tournament, 4k and stronger, American daytime\",\"id\":80},{\"notes\":\"Winner:
+        sss\",\"url\":\"http://metakgs.org/api/tournament/77\",\"name\":\"March KGS
+        Plus Tournament, 4k and stronger, Asian daytime\",\"id\":77},{\"notes\":\"Winner:
+        EvilBuu\",\"url\":\"http://metakgs.org/api/tournament/78\",\"name\":\"March
+        KGS Plus Tournament, 5k and under, Asian daytime\",\"id\":78},{\"notes\":\"Winner:
+        GoGNU\",\"url\":\"http://metakgs.org/api/tournament/75\",\"name\":\"KGS test
+        Computer Go Tournament\",\"id\":75},{\"notes\":\"Winner: aitkensam\",\"url\":\"http://metakgs.org/api/tournament/67\",\"name\":\"February
+        Tournament, 5k down division, American daytime\",\"id\":67},{\"notes\":\"Winner:
+        Nexo\",\"url\":\"http://metakgs.org/api/tournament/66\",\"name\":\"February
+        Tournament, 4k up division, American daytime\",\"id\":66},{\"notes\":\"Winner:
+        sss\",\"url\":\"http://metakgs.org/api/tournament/71\",\"name\":\"February
+        Tournament, 4k up division, Asian daytime\",\"id\":71},{\"notes\":\"Winner:
+        Valquis\",\"url\":\"http://metakgs.org/api/tournament/70\",\"name\":\"February
+        Tournament, 5k down division, Asian daytime\",\"id\":70},{\"notes\":\"Winner:
+        Woodstock\",\"url\":\"http://metakgs.org/api/tournament/74\",\"name\":\"Double
+        Elim Test Tournament 3\",\"id\":74},{\"notes\":\"Winner: Balladeer\",\"url\":\"http://metakgs.org/api/tournament/73\",\"name\":\"Double
+        Elim Test Tournament 2\",\"id\":73},{\"notes\":\"Winner: Kakashisan\",\"url\":\"http://metakgs.org/api/tournament/72\",\"name\":\"Double
+        Elim Test Tournament\",\"id\":72},{\"notes\":\"Winner: Kostel\",\"url\":\"http://metakgs.org/api/tournament/65\",\"name\":\"January
+        Tournament, 5k down Division, American Daytime\",\"id\":65},{\"notes\":\"Winner:
+        ivoSF\",\"url\":\"http://metakgs.org/api/tournament/63\",\"name\":\"January
+        Tournament, 4k up Division, American Daytime\",\"id\":63},{\"notes\":\"Winner:
+        acmh7\",\"url\":\"http://metakgs.org/api/tournament/62\",\"name\":\"January
+        Tournament, 4k up Division, Asian Daytime\",\"id\":62},{\"notes\":\"Winner:
+        Bonklers\",\"url\":\"http://metakgs.org/api/tournament/64\",\"name\":\"January
+        Tournament, 5k down Division, Asian Daytime\",\"id\":64}]},\"request_url\":\"http://www.gokgs.com/tournList.jsp?year=2005\",\"message\":\"OK\"}"
+    http_version: 
+  recorded_at: Fri, 24 Oct 2014 12:56:11 GMT
+recorded_with: VCR 2.9.3

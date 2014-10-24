@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://metakgs.org/api/archives/anazawa/2005/10
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - MetaKGS Ruby Gem 0.0.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Server:
+      - nginx/1.6.2
+      Date:
+      - Fri, 24 Oct 2014 16:32:00 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '214'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - private
+      Access-Control-Allow-Methods:
+      - GET
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    body:
+      encoding: UTF-8
+      string: "{\"requested_at\":\"2014-10-24T16:05:59Z\",\"responded_at\":\"2014-10-24T16:05:59Z\",\"content\":null,\"request_url\":\"http://www.gokgs.com/gameArchives.jsp?user=anazawa&year=2005&month=10&oldAccounts=y\",\"message\":\"Not
+        Found\"}"
+    http_version: 
+  recorded_at: Fri, 24 Oct 2014 12:56:08 GMT
+recorded_with: VCR 2.9.3
