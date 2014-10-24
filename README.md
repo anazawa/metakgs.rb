@@ -1,5 +1,7 @@
 # MetaKGS
 
+[![Build Status](https://travis-ci.org/anazawa/metakgs.rb.svg)](https://travis-ci.org/anazawa/metakgs.rb)
+
 Ruby toolkit for working with the MetaKGS API
 
 ## Prerequisite
