@@ -12,68 +12,38 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - ! '*/*'
+      - "*/*"
   response:
     status:
       code: 200
-      message: !binary |-
-        T0s=
+      message: OK
     headers:
-      !binary "U2VydmVy":
-      - !binary |-
-        bmdpbngvMS42LjI=
-      !binary "RGF0ZQ==":
-      - !binary |-
-        RnJpLCAyNCBPY3QgMjAxNCAwNTozNDoxMiBHTVQ=
-      !binary "Q29udGVudC1UeXBl":
-      - !binary |-
-        YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD11dGYtOA==
-      !binary "VHJhbnNmZXItRW5jb2Rpbmc=":
-      - !binary |-
-        Y2h1bmtlZA==
-      !binary "Q29ubmVjdGlvbg==":
-      - !binary |-
-        a2VlcC1hbGl2ZQ==
-      !binary "Q2FjaGUtQ29udHJvbA==":
-      - !binary |-
-        bWF4LWFnZT0zNjAw
-      - !binary |-
-        cHVibGlj
-      !binary "TGFzdC1Nb2RpZmllZA==":
-      - !binary |-
-        RnJpLCAyNCBPY3QgMjAxNCAwNTozNDoxMiBHTVQ=
-      !binary "QWNjZXNzLUNvbnRyb2wtQWxsb3ctTWV0aG9kcw==":
-      - !binary |-
-        R0VU
-      !binary "QWNjZXNzLUNvbnRyb2wtQWxsb3ctT3JpZ2lu":
-      - !binary |-
-        Kg==
-      !binary "WC1Db250ZW50LVR5cGUtT3B0aW9ucw==":
-      - !binary |-
-        bm9zbmlmZg==
-      !binary "WC1GcmFtZS1PcHRpb25z":
-      - !binary |-
-        REVOWQ==
-      !binary "Q29udGVudC1FbmNvZGluZw==":
-      - !binary |-
-        Z3ppcA==
+      Server:
+      - nginx/1.6.2
+      Date:
+      - Fri, 24 Oct 2014 10:09:42 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=3600
+      - public
+      Last-Modified:
+      - Fri, 24 Oct 2014 05:34:12 GMT
+      Access-Control-Allow-Methods:
+      - GET
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
     body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        H4sIAAAAAAAAA82WXW+bMBSG/4svchXAJkRtLEVTe9uLSV2nSduqyAGHuDGG
-        2SYsRPnvO6QQgqqo+ZQmcWML3nN4n2Ofs0ZSqAWia6T4X4uoyqXso5nQBhZo
-        bm1GPS/hli1i46Y69lgmPKbDuVhy4zHFSlYwz8f43vNRH2WaL0/6jgTeCL6T
-        7JR4aNNHmv/JubE8mrAqUx+TwCHY8YMXPKSDgBLyE3Q1N1mqosNv+dVbYaos
-        VyCzRjYuJ7mW7T8UReHGafX3YZp4huul5LZ1gKvJ92+NDw6T0qkzcS3TblyC
-        eimyK0mCEujFLOEG0V9rlBaK64bZNGU6mhhRckTJqI9MPOuGnQnJzd6/bHUA
-        HSAguHpqms4CkAoy8u9c0ICAxVxYEIWADfiu8GflARIKcgZP6wiwoVlVdYhE
-        aPPaR1PJQlieHmGXahtjf6sbxQCSDwVD8AsOaHBX1YFdZVWWz5Abj2A9ZyoS
-        Icsai6GacllV2+PvHGN/OnSHUIpX52CikAyw79RuXUqhlmsdaje6/pxNocX6
-        CeeDBAZ0GJxE4Mc7gWduRKxuAaE5DGqVJkxdyuBoh85m8J5nC3m3bhgvtift
-        IAGf+tsb8+gzUBO4v80ZaOxPmLXs/3d/m2ZrfrM80ntC/bPun9tV/yxf5CVX
-        b+Jal9BOsDVpf6sx6sJ2cPQxO3gMMMWnXUR1K2hQvLajSbdJdueIqvc+1FOU
-        +2ayLzlMFuM6/d6KMz2uGnMvgclkPia4l8roIQzTXFkzXoGHMAIYFlfd6usT
-        2vwD/TZiZsYJAAA=
+      encoding: UTF-8
+      string: "{\"link\":{\"next\":null,\"first\":\"http://metakgs.org/api/archives/anazawa/2008/2\",\"prev\":\"http://metakgs.org/api/archives/anazawa/2014/9\",\"last\":\"http://metakgs.org/api/archives/anazawa\"},\"requested_at\":\"2014-10-24T05:34:11Z\",\"responded_at\":\"2014-10-24T05:34:12Z\",\"content\":{\"tgz_url\":\"http://www.gokgs.com/servlet/archives/en_US/anazawa-all-2014-10.tar.gz\",\"zip_url\":\"http://www.gokgs.com/servlet/archives/en_US/anazawa-all-2014-10.zip\",\"games\":[{\"owner\":null,\"board_size\":19,\"sgf_url\":\"http://files.gokgs.com/games/2014/10/10/anazawa-kawai1927.sgf\",\"white\":[{\"archives_url\":\"http://metakgs.org/api/archives/anazawa\",\"name\":\"anazawa\",\"rank\":\"1d\"}],\"black\":[{\"archives_url\":\"http://metakgs.org/api/archives/kawai1927\",\"name\":\"kawai1927\",\"rank\":\"1d\"}],\"started_at\":\"2014-10-10T04:47Z\",\"type\":\"Ranked\",\"handicap\":null,\"result\":\"B\\u002b5.5\"},{\"owner\":null,\"board_size\":19,\"sgf_url\":\"http://files.gokgs.com/games/2014/10/10/sdc1302-anazawa.sgf\",\"white\":[{\"archives_url\":\"http://metakgs.org/api/archives/sdc1302\",\"name\":\"sdc1302\",\"rank\":\"1d\"}],\"black\":[{\"archives_url\":\"http://metakgs.org/api/archives/anazawa\",\"name\":\"anazawa\",\"rank\":\"1d\"}],\"started_at\":\"2014-10-10T03:54Z\",\"type\":\"Ranked\",\"handicap\":null,\"result\":\"W\\u002bResign\"},{\"owner\":null,\"board_size\":19,\"sgf_url\":\"http://files.gokgs.com/games/2014/10/10/anazawa-nyoman.sgf\",\"white\":[{\"archives_url\":\"http://metakgs.org/api/archives/anazawa\",\"name\":\"anazawa\",\"rank\":\"1d\"}],\"black\":[{\"archives_url\":\"http://metakgs.org/api/archives/nyoman\",\"name\":\"nyoman\",\"rank\":\"1k\"}],\"started_at\":\"2014-10-10T02:21Z\",\"type\":\"Ranked\",\"handicap\":null,\"result\":\"W\\u002b8.5\"},{\"owner\":null,\"board_size\":19,\"sgf_url\":\"http://files.gokgs.com/games/2014/10/10/anazawa-matta.sgf\",\"white\":[{\"archives_url\":\"http://metakgs.org/api/archives/anazawa\",\"name\":\"anazawa\",\"rank\":\"1d\"}],\"black\":[{\"archives_url\":\"http://metakgs.org/api/archives/matta\",\"name\":\"matta\",\"rank\":\"1k\"}],\"started_at\":\"2014-10-10T01:27Z\",\"type\":\"Ranked\",\"handicap\":null,\"result\":\"B\\u002bResign\"},{\"owner\":null,\"board_size\":19,\"sgf_url\":\"http://files.gokgs.com/games/2014/10/10/fukuzenji-anazawa.sgf\",\"white\":[{\"archives_url\":\"http://metakgs.org/api/archives/fukuzenji\",\"name\":\"fukuzenji\",\"rank\":\"1d\"}],\"black\":[{\"archives_url\":\"http://metakgs.org/api/archives/anazawa\",\"name\":\"anazawa\",\"rank\":\"1d\"}],\"started_at\":\"2014-10-10T00:04Z\",\"type\":\"Ranked\",\"handicap\":null,\"result\":\"B\\u002bResign\"}]},\"request_url\":\"http://www.gokgs.com/gameArchives.jsp?user=anazawa&year=2014&month=10&oldAccounts=y\",\"message\":\"OK\"}"
     http_version: 
-  recorded_at: Fri, 24 Oct 2014 05:34:12 GMT
+  recorded_at: Fri, 24 Oct 2014 10:09:42 GMT
 recorded_with: VCR 2.9.3

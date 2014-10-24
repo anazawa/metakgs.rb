@@ -12,69 +12,48 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - ! '*/*'
+      - "*/*"
   response:
     status:
       code: 200
-      message: !binary |-
-        T0s=
+      message: OK
     headers:
-      !binary "U2VydmVy":
-      - !binary |-
-        bmdpbngvMS42LjI=
-      !binary "RGF0ZQ==":
-      - !binary |-
-        RnJpLCAyNCBPY3QgMjAxNCAwNTo1Nzo1MiBHTVQ=
-      !binary "Q29udGVudC1UeXBl":
-      - !binary |-
-        YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD11dGYtOA==
-      !binary "VHJhbnNmZXItRW5jb2Rpbmc=":
-      - !binary |-
-        Y2h1bmtlZA==
-      !binary "Q29ubmVjdGlvbg==":
-      - !binary |-
-        a2VlcC1hbGl2ZQ==
-      !binary "Q2FjaGUtQ29udHJvbA==":
-      - !binary |-
-        bWF4LWFnZT0zNjAw
-      - !binary |-
-        cHVibGlj
-      !binary "TGFzdC1Nb2RpZmllZA==":
-      - !binary |-
-        VHVlLCAwNyBPY3QgMjAxNCAwMjo0MDozNSBHTVQ=
-      !binary "QWNjZXNzLUNvbnRyb2wtQWxsb3ctTWV0aG9kcw==":
-      - !binary |-
-        R0VU
-      !binary "QWNjZXNzLUNvbnRyb2wtQWxsb3ctT3JpZ2lu":
-      - !binary |-
-        Kg==
-      !binary "WC1Db250ZW50LVR5cGUtT3B0aW9ucw==":
-      - !binary |-
-        bm9zbmlmZg==
-      !binary "WC1GcmFtZS1PcHRpb25z":
-      - !binary |-
-        REVOWQ==
-      !binary "Q29udGVudC1FbmNvZGluZw==":
-      - !binary |-
-        Z3ppcA==
+      Server:
+      - nginx/1.6.2
+      Date:
+      - Fri, 24 Oct 2014 10:09:43 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=3600
+      - public
+      Last-Modified:
+      - Tue, 07 Oct 2014 02:40:35 GMT
+      Access-Control-Allow-Methods:
+      - GET
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
     body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        H4sIAAAAAAAAA6VUbWvbQAz+K6o72AqJ35JQGhijsDJKP6wsgcGaUi6xYl9j
-        33knuV5W8t8nO21MIetY+skvukePHt0jPXoOf1ZIjMmdYm/sxWE07EdhPzyd
-        hvF4GI4Hox9eT05RaU3yj1MLaxiNpHn0jGUkyfddG4NuDIWbo1pJJqMKlP8T
-        LBmLOTqY2so1Pw334LxApxfKBBeVsyUqA4lasy6wB8MVfNYPmrQ1TT22Monk
-        v3n0KpdLvoy5HAdBgaxWKfnWpYEqdcC75EEUD4IWFkTPCbxx1PPQ7KSHo354
-        1o+H0+hsHIaNbmLl+LkzXfi0DW96h7DHHXu8nz2OXmffFncY+6BjH+xjH72u
-        XcJv0T7s2If72V/Vvituc9vzdCLXF7ci2CnDdPc/ThC7tSApKEFaOF1y4ywx
-        LOYLWyCwBc4QOp92VjqCS35PMEc0oCC3JoXGo0DaLBBqhEwlEugAUGvOgHJb
-        bw82c+JsTj2ghkUTWCNAnecCfUBQc1sxcG0hE/8SlDImrXV9uDD3dn00MzNz
-        fAwTmUmyrvl6esUE5mu4ufoygeu8otsPT3NR17Wf2mYyRFwgzybq/8q4yE9A
-        mUQgmlAnFq6rea4p0yZ9AV5twy38xH/i/1blSC17rYmAeJ3LpE50UeWsDNqK
-        YLLIMJFjz5Brp39vMZEPU2lw3S4ISJEJIiikMxnYJSwd4iE6FLyLRpDqJcMC
-        HeulrBNGSWeLnca/C5uZ2IdzswbZLrhEQSZQ5mqNcglS4RsLnJlBm31ukzXU
-        mW1TE2hxkdz8Uq56e8stV9ONGnF1YDO8TbO029X+ci5eOqH16KVZWv+eyk86
-        +SgTJSNRIJFKmz399crb/AGu9er9JQYAAA==
+      encoding: UTF-8
+      string: "{\"requested_at\":\"2014-10-07T02:40:35Z\",\"responded_at\":\"2014-10-07T02:40:35Z\",\"content\":{\"notes\":\"Winner:
+        mrbeak\",\"name\":\"September Tournament, American/European daytime, 4k Division\",\"rounds\":[{\"url\":\"http://metakgs.org/api/tournament/123/round/1\",\"round\":1,\"end_at\":\"2005-09-24T19:00Z\",\"start_at\":\"2005-09-24T17:00Z\"},{\"url\":\"http://metakgs.org/api/tournament/123/round/2\",\"round\":2,\"end_at\":\"2005-09-24T21:00Z\",\"start_at\":\"2005-09-24T19:00Z\"},{\"url\":\"http://metakgs.org/api/tournament/123/round/3\",\"round\":3,\"end_at\":\"2005-09-25T19:00Z\",\"start_at\":\"2005-09-25T17:00Z\"},{\"url\":\"http://metakgs.org/api/tournament/123/round/4\",\"round\":4,\"end_at\":\"2005-09-25T21:00Z\",\"start_at\":\"2005-09-25T19:00Z\"}],\"id\":123,\"entrants_url\":\"http://metakgs.org/api/tournament/123/entrants\",\"description\":\"Welcome
+        to the September tournament! It's been a long time since we had a tournament
+        with slow time controls, so this one will have about two hours per round.
+        Enjoy!\\n\\n## Sponsor\\n\\nSponsored by [KGS Plus](http://www.gokgs.com/kgsPlus.xhtml)
+        and [Kiseido Publishing](http://www.kiseido.com/).\\n\\n## Rules\\n\\nSwiss
+        style, Simultaneous Schedule.\\n\\n## Prizes\\n\\n1. The winner gets 1 month
+        of free [KGS Plus](http://www.gokgs.com/kgsPlus.xhtml) and a $15 gift certificate
+        from [Kiseido](http://www.kiseido.com/)\\n2. Any undefeated players get 1
+        month of free [KGS Plus](http://www.gokgs.com/kgsPlus.xhtml)\\n3. Anybody
+        who plays in all four rounds gets 1 week of free [KGS Plus](http://www.gokgs.com/kgsPlus.xhtml)\"},\"request_url\":\"http://www.gokgs.com/tournInfo.jsp?id=123\",\"message\":\"OK\"}"
     http_version: 
-  recorded_at: Fri, 24 Oct 2014 05:57:52 GMT
+  recorded_at: Fri, 24 Oct 2014 10:09:43 GMT
 recorded_with: VCR 2.9.3

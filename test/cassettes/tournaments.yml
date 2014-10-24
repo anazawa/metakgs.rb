@@ -12,81 +12,115 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - ! '*/*'
+      - "*/*"
   response:
     status:
       code: 200
-      message: !binary |-
-        T0s=
+      message: OK
     headers:
-      !binary "U2VydmVy":
-      - !binary |-
-        bmdpbngvMS42LjI=
-      !binary "RGF0ZQ==":
-      - !binary |-
-        RnJpLCAyNCBPY3QgMjAxNCAwNTo1MToyOCBHTVQ=
-      !binary "Q29udGVudC1UeXBl":
-      - !binary |-
-        YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD11dGYtOA==
-      !binary "VHJhbnNmZXItRW5jb2Rpbmc=":
-      - !binary |-
-        Y2h1bmtlZA==
-      !binary "Q29ubmVjdGlvbg==":
-      - !binary |-
-        a2VlcC1hbGl2ZQ==
-      !binary "Q2FjaGUtQ29udHJvbA==":
-      - !binary |-
-        bWF4LWFnZT0zNjAw
-      - !binary |-
-        cHVibGlj
-      !binary "TGFzdC1Nb2RpZmllZA==":
-      - !binary |-
-        RnJpLCAyNCBPY3QgMjAxNCAwNTo1MToyOCBHTVQ=
-      !binary "QWNjZXNzLUNvbnRyb2wtQWxsb3ctTWV0aG9kcw==":
-      - !binary |-
-        R0VU
-      !binary "QWNjZXNzLUNvbnRyb2wtQWxsb3ctT3JpZ2lu":
-      - !binary |-
-        Kg==
-      !binary "WC1Db250ZW50LVR5cGUtT3B0aW9ucw==":
-      - !binary |-
-        bm9zbmlmZg==
-      !binary "WC1GcmFtZS1PcHRpb25z":
-      - !binary |-
-        REVOWQ==
-      !binary "Q29udGVudC1FbmNvZGluZw==":
-      - !binary |-
-        Z3ppcA==
+      Server:
+      - nginx/1.6.2
+      Date:
+      - Fri, 24 Oct 2014 10:09:44 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=3600
+      - public
+      Last-Modified:
+      - Fri, 24 Oct 2014 05:51:28 GMT
+      Access-Control-Allow-Methods:
+      - GET
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
     body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        H4sIAAAAAAAAA62Zb3PaOBDGv4rGr2mwDdTCNzc3ueb+JCHNTGGaa+9uOgKr
-        oANLPlkuOJ18966dUGSs2BbNO5gx0o/dZ5/Vyl+dDeNrJ/zqcLpTTsizzabn
-        fGYyhS/OSqkk7Pdjqsh6mZ4JueyThPWVyCQnMeUq7fuu6zk9J5H0S9cfeAP4
-        wYZ03MF56DmS/p/RVNHoEymwfNcbvvLcV/5w5o7CkRf6+CMsKWmaCB61PLUQ
-        XAF58Ze1/+GEf0MIhKIprP9WKJQqImFDlFMFS2dy0+Xf9cd+AE8XsYHHbxdK
-        zKlE139M/8lc15+j2ffA9dB5TCVbEI4uSK5YTNFtQjmK2BeWMsFhFRY5Iaz3
-        0HsZsNcng/lrRHiEMgitRH/CR8BO6qSvX4p01Jk0ZYT3f8ukSGhrIEcvhTf8
-        QbyO4RzqvO8ERB95GDGOEimWIPUUMLrLclyHLqqo0Caag9wPpQAPPipvrAPc
-        Mc6pDNEHIddWG/uHjac0UTQuKuJSCo5uIGWHgggf9X9xrH/fRDFhsRVE4VBP
-        RdkCcZ1nB4nXYDwTzEfKvfHUiqcwwBpPmY/p5PbuuYQMTLvPKXdt9vY0+Z5n
-        yyxVXf3p2Jq8ikL3Armj8jPNrMRZ9oOncDQjmeu9BmYMVEIWK2YVKU26T1gt
-        JeMZxTrbsijaUKgyq901zXbcvaLOGaM/oW1ZtWmIZltKHxl68PkkHnzQ7Ax6
-        MRqGCLplqZ5nBOthk2APKFbh0Ppquf2gfftK63zxeGj9tATy24EqHXJfMBdQ
-        hH+xouF3dnOvqPingrnKNrlWwW8kuc/Rr4LIKGX3NNWMHYVoEOwGAVIrii55
-        SjhFxw7nuaaUTdJsmVMrRFdrOFaI/mDnD+qHo2NQ19idTjAfV9P1KaBmS6rh
-        GkthQhQjVlbpamVgResFOy/oENZKzewlOs0TJXO7/GvlcQpox7AaK8q6IePx
-        sQiajR6eN5XJlMTThETUopTxuJJQqMgfGBZgMRPWiq2JzODUaMVVyV93rqE+
-        Kxw1Zjw2puvy3ApMmw6usufBzAIyzVh4XBkN9qK/ENIuk9rByh6sOW7Gk5a9
-        zHFF5hC7Fpljo8zjLI2FjWthrInphujt6nD+7zgQw1omjdsNBBhrIrIAqkxu
-        x+LGRhW9hXHZSkZYk1EDmoW8sVE9kiro6laegLWxxRqtOXbGE/sJAtfctCBs
-        07fRLz9ksc2cgLE+JySSbbp6eE1BxvHhncjJ5o0UW5v+i7E+PjRBmYVUQ6vM
-        FnuLPCFB2sn1vMRqS5H5QGo1/+NA870bIhcr8wVE0+wPa5h8h99Lq7QE2rG4
-        gaRsUxfVqxAcGI+89jkIKkVSRKPMwfM3Dzgw1old3w60HvA7ncuMyM6NoBYJ
-        Yw9YZ5KBp9kcJgKtD7RBmQulhmbsAuVUNlWCW7WCQGsF3+la6iUwmn0klnDt
-        ZnP/gAPN7K8I75KuqOEiG9Yz1Y+lhjSntWRqbD+B0XjfC3gBsLOSk2a6LXxV
-        NTVHzui9nMZWaJrxnoTWHECjS9tb00izxz1li+BH44d/D2+IPlXuULbb7dlS
-        FG+uFiJ+fGs1Yak6+y9NfskpkT8Xa0MUY7hNJ8vylc218/ANRhC2CRMbAAA=
+      encoding: UTF-8
+      string: "{\"link\":{\"next\":null,\"first\":\"http://metakgs.org/api/tournaments/2001\",\"prev\":\"http://metakgs.org/api/tournaments/2013\",\"last\":\"http://metakgs.org/api/tournaments\"},\"requested_at\":\"2014-10-24T05:51:28Z\",\"responded_at\":\"2014-10-24T05:51:28Z\",\"content\":{\"tournaments\":[{\"notes\":\"Not
+        started yet\",\"url\":\"http://metakgs.org/api/tournament/927\",\"name\":\"October
+        KGS\\u002b Tournament, American Daytime Open division\",\"id\":927},{\"notes\":\"Not
+        started yet\",\"url\":\"http://metakgs.org/api/tournament/926\",\"name\":\"October
+        KGS\\u002b Tournament, American Daytime 2k and under Handicap division\",\"id\":926},{\"notes\":\"Not
+        started yet\",\"url\":\"http://metakgs.org/api/tournament/925\",\"name\":\"October
+        KGS\\u002b Tournament, Asian/European Daytime Open division\",\"id\":925},{\"notes\":\"Not
+        started yet\",\"url\":\"http://metakgs.org/api/tournament/924\",\"name\":\"October
+        KGS\\u002b Tournament, Asian/European Daytime 2k and under Handicap division\",\"id\":924},{\"notes\":\"Round
+        18 in progress\",\"url\":\"http://metakgs.org/api/tournament/929\",\"name\":\"October
+        2014 KGS bot tournament\",\"id\":929},{\"notes\":\"Winner: York\",\"url\":\"http://metakgs.org/api/tournament/922\",\"name\":\"September
+        Iron Man Tournament: Open Division\",\"id\":922},{\"notes\":\"Winner: Lim\",\"url\":\"http://metakgs.org/api/tournament/921\",\"name\":\"September
+        Iron Man Tournament: Kyu Handicap Division\",\"id\":921},{\"notes\":\"Winner:
+        Zen19S\",\"url\":\"http://metakgs.org/api/tournament/923\",\"name\":\"September
+        2014 SLOW bot tournament\",\"id\":923},{\"notes\":\"Winner: ben0\",\"url\":\"http://metakgs.org/api/tournament/914\",\"name\":\"August
+        KGS\\u002b Tournament, American Daytime division\",\"id\":914},{\"notes\":\"Winner:
+        Werfeus\",\"url\":\"http://metakgs.org/api/tournament/913\",\"name\":\"August
+        KGS\\u002b Tournament, Asian/European Daytime division\",\"id\":913},{\"notes\":\"Winner:
+        pachi\",\"url\":\"http://metakgs.org/api/tournament/912\",\"name\":\"August
+        2014 KGS bot tournament\",\"id\":912},{\"notes\":\"Winner: Twiddlebot\",\"url\":\"http://metakgs.org/api/tournament/911\",\"name\":\"August
+        2014 KGS bot tournament\",\"id\":911},{\"notes\":\"Tie; winners: Tweedlebot,
+        Twiddlebot\",\"url\":\"http://metakgs.org/api/tournament/918\",\"name\":\"Test
+        4: test KGS bot tournament\",\"id\":918},{\"notes\":\"Winner: Tweedlebot\",\"url\":\"http://metakgs.org/api/tournament/917\",\"name\":\"Test
+        3: test KGS bot tournament\",\"id\":917},{\"notes\":\"Tie; winners: Tweedlebot,
+        Twiddlebot\",\"url\":\"http://metakgs.org/api/tournament/916\",\"name\":\"Test
+        2: test KGS bot tournament\",\"id\":916},{\"notes\":\"Winner: DuguXin\",\"url\":\"http://metakgs.org/api/tournament/910\",\"name\":\"July
+        KGS\\u002b Crazy Boardsizes tournament : 37x37 the Insane Division\",\"id\":910},{\"notes\":\"Winner:
+        Lsugyen\",\"url\":\"http://metakgs.org/api/tournament/909\",\"name\":\"July
+        KGS\\u002b Crazy Boardsizes tournament : 23x23 American Daytime Division\",\"id\":909},{\"notes\":\"Winner:
+        Werfeus\",\"url\":\"http://metakgs.org/api/tournament/908\",\"name\":\"July
+        KGS\\u002b Crazy Boardsizes tournament : 23x23 Asian/European Daytime Division\",\"id\":908},{\"notes\":\"Winner:
+        Latias\",\"url\":\"http://metakgs.org/api/tournament/907\",\"name\":\"July
+        KGS\\u002b Crazy Boardsizes tournament : 17x17 American Daytime Division\",\"id\":907},{\"notes\":\"Winner:
+        Syptryn\",\"url\":\"http://metakgs.org/api/tournament/906\",\"name\":\"July
+        KGS\\u002b Crazy Boardsizes tournament : 17x17 Asian/European Daytime Division\",\"id\":906},{\"notes\":\"Winner:
+        Zen19S\",\"url\":\"http://metakgs.org/api/tournament/898\",\"name\":\"July
+        2014 KGS bot tournament\",\"id\":898},{\"notes\":\"Winner: SamSpade\",\"url\":\"http://metakgs.org/api/tournament/897\",\"name\":\"June
+        KGS\\u002b Tournament, American Daytime Open division\",\"id\":897},{\"notes\":\"Winner:
+        hikarupro\",\"url\":\"http://metakgs.org/api/tournament/896\",\"name\":\"June
+        KGS\\u002b Tournament, American Daytime 4k and under division\",\"id\":896},{\"notes\":\"Winner:
+        IA\",\"url\":\"http://metakgs.org/api/tournament/895\",\"name\":\"June KGS\\u002b
+        Tournament, Asian/European Daytime Open division\",\"id\":895},{\"notes\":\"Winner:
+        Dore\",\"url\":\"http://metakgs.org/api/tournament/894\",\"name\":\"June KGS\\u002b
+        Tournament, Asian/European Daytime 4k and under division\",\"id\":894},{\"notes\":\"Winner:
+        Zen19S\",\"url\":\"http://metakgs.org/api/tournament/888\",\"name\":\"June
+        2014 KGS bot tournament\",\"id\":888},{\"notes\":\"Winner: musmos\",\"url\":\"http://metakgs.org/api/tournament/886\",\"name\":\"May
+        KGS\\u002b Tournament, American Daytime Open division\",\"id\":886},{\"notes\":\"Winner:
+        Lim\",\"url\":\"http://metakgs.org/api/tournament/885\",\"name\":\"May KGS\\u002b
+        Tournament, American Daytime 2k and under division\",\"id\":885},{\"notes\":\"Winner:
+        Nande\",\"url\":\"http://metakgs.org/api/tournament/884\",\"name\":\"May KGS\\u002b
+        Tournament, Asian/European Daytime Open division\",\"id\":884},{\"notes\":\"Winner:
+        retsugo\",\"url\":\"http://metakgs.org/api/tournament/883\",\"name\":\"May
+        KGS\\u002b Tournament, Asian/European Daytime 2k and under division\",\"id\":883},{\"notes\":\"Winner:
+        Zen19S\",\"url\":\"http://metakgs.org/api/tournament/887\",\"name\":\"May
+        2014 KGS bot tournament\",\"id\":887},{\"notes\":\"Winner: Yumi\",\"url\":\"http://metakgs.org/api/tournament/882\",\"name\":\"April
+        KGS\\u002b Tournament, American Daytime division\",\"id\":882},{\"notes\":\"Winner:
+        RoyalCrown\",\"url\":\"http://metakgs.org/api/tournament/881\",\"name\":\"April
+        KGS\\u002b Tournament, Asian/European Daytime division\",\"id\":881},{\"notes\":\"Winner:
+        Zen19S\",\"url\":\"http://metakgs.org/api/tournament/880\",\"name\":\"April
+        2014 KGS bot tournament\",\"id\":880},{\"notes\":\"Winner: Lim\",\"url\":\"http://metakgs.org/api/tournament/878\",\"name\":\"March
+        Iron Man Tournament: Kyu Handicap Division\",\"id\":878},{\"notes\":\"Winner:
+        nzrn\",\"url\":\"http://metakgs.org/api/tournament/879\",\"name\":\"March
+        Iron Man Tournament: Open Division\",\"id\":879},{\"notes\":\"Winner: Zen19S\",\"url\":\"http://metakgs.org/api/tournament/877\",\"name\":\"March
+        2014 SLOW bot tournament\",\"id\":877},{\"notes\":\"Winner: IA\",\"url\":\"http://metakgs.org/api/tournament/876\",\"name\":\"February
+        KGS\\u002b Tournament, American Daytime Division\",\"id\":876},{\"notes\":\"Winner:
+        kuritsu\",\"url\":\"http://metakgs.org/api/tournament/875\",\"name\":\"February
+        KGS\\u002b Tournament, Asian/European Daytime Division\",\"id\":875},{\"notes\":\"Winner:
+        CrazyStone\",\"url\":\"http://metakgs.org/api/tournament/874\",\"name\":\"February
+        2014 KGS bot tournament\",\"id\":874},{\"notes\":\"Winner: dogbert\",\"url\":\"http://metakgs.org/api/tournament/873\",\"name\":\"January
+        KGS\\u002b Tournament, American daytime Open division\",\"id\":873},{\"notes\":\"Winner:
+        IA\",\"url\":\"http://metakgs.org/api/tournament/872\",\"name\":\"January
+        KGS\\u002b Tournament, American daytime 2k and under division\",\"id\":872},{\"notes\":\"Winner:
+        Vortex\",\"url\":\"http://metakgs.org/api/tournament/871\",\"name\":\"January
+        KGS\\u002b Tournament, Asian/European daytime Open division\",\"id\":871},{\"notes\":\"Winner:
+        nem\",\"url\":\"http://metakgs.org/api/tournament/870\",\"name\":\"January
+        KGS\\u002b Tournament, Asian/European daytime 2k and under division\",\"id\":870},{\"notes\":\"Winner:
+        Zen19S\",\"url\":\"http://metakgs.org/api/tournament/859\",\"name\":\"January
+        2014 KGS bot tournament\",\"id\":859}]},\"request_url\":\"http://www.gokgs.com/tournList.jsp?year=2014\",\"message\":\"OK\"}"
     http_version: 
-  recorded_at: Fri, 24 Oct 2014 05:51:28 GMT
+  recorded_at: Fri, 24 Oct 2014 10:09:44 GMT
 recorded_with: VCR 2.9.3

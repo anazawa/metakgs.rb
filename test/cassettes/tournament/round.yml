@@ -12,81 +12,42 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - ! '*/*'
+      - "*/*"
   response:
     status:
       code: 200
-      message: !binary |-
-        T0s=
+      message: OK
     headers:
-      !binary "U2VydmVy":
-      - !binary |-
-        bmdpbngvMS42LjI=
-      !binary "RGF0ZQ==":
-      - !binary |-
-        RnJpLCAyNCBPY3QgMjAxNCAwNjoxMTo1NCBHTVQ=
-      !binary "Q29udGVudC1UeXBl":
-      - !binary |-
-        YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD11dGYtOA==
-      !binary "VHJhbnNmZXItRW5jb2Rpbmc=":
-      - !binary |-
-        Y2h1bmtlZA==
-      !binary "Q29ubmVjdGlvbg==":
-      - !binary |-
-        a2VlcC1hbGl2ZQ==
-      !binary "Q2FjaGUtQ29udHJvbA==":
-      - !binary |-
-        bWF4LWFnZT0zNjAw
-      - !binary |-
-        cHVibGlj
-      !binary "TGFzdC1Nb2RpZmllZA==":
-      - !binary |-
-        VHVlLCAwNyBPY3QgMjAxNCAwMjo1MzozNCBHTVQ=
-      !binary "QWNjZXNzLUNvbnRyb2wtQWxsb3ctTWV0aG9kcw==":
-      - !binary |-
-        R0VU
-      !binary "QWNjZXNzLUNvbnRyb2wtQWxsb3ctT3JpZ2lu":
-      - !binary |-
-        Kg==
-      !binary "WC1Db250ZW50LVR5cGUtT3B0aW9ucw==":
-      - !binary |-
-        bm9zbmlmZg==
-      !binary "WC1GcmFtZS1PcHRpb25z":
-      - !binary |-
-        REVOWQ==
-      !binary "Q29udGVudC1FbmNvZGluZw==":
-      - !binary |-
-        Z3ppcA==
+      Server:
+      - nginx/1.6.2
+      Date:
+      - Fri, 24 Oct 2014 10:09:43 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=3600
+      - public
+      Last-Modified:
+      - Tue, 07 Oct 2014 02:53:34 GMT
+      Access-Control-Allow-Methods:
+      - GET
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
     body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        H4sIAAAAAAAAA7WZXW/bNhSG/4qhi11Z0YftOjZQDBkyBEjRFag9YOgwBLRE
-        y5wl0SMpO07Q/16SInWkLHWmirvLObHOc96X1NfRs5eTcu8tn70SPwpv6e2E
-        OCyDoMAC7TN+RVkWoAMJBK1YiQpciiCKJwGjVZkGsTf2toTxvsdF8rgDw0dv
-        WVZ5PvZy1LvE1Ps69hj+p8Jc4PQBqRbiMJr6UeiH83UYL2eT5WT6RZIY5gda
-        pm/8KqGlkOqUE5nUyb3ln88ez7YPFcvBli3JMb/KqLImoUWgfxrEYTgLFkE8
-        DTgpNij1tzk6ElxeyeNlA6cdEVgVRizZkSPm3Zovrba/MsVkAWW87KEurhQh
-        tWRetNgrFzYUsfSBkyf5m2gh4xwlekVtof+IM00DDxIGGE80kAvEhLU8nPnh
-        wo+n62i+DMMvsqEfsE3sMMfYv3nE+f1A0+pSIKKJrWnXTk3TLQPNhl2Ye8MK
-        tsFo798iti8oZXigaXU5kNHEVsfcqWlN20Bsp7pQ9+Z9ppRsKPd/kef7DhUD
-        vTPVQAokrJB3Tt0zbQMQEl2ge+fWO5zSAvs0JduBtplSoAISXRWuLm+qZ6CZ
-        qItybxhHJHoXRtcLn+bJ03k/0LSmHAhpp6yaqdP9VncOxCa2uJnGuTfvNp4s
-        ZmF4HYb+p6dzgcqUVHygg1ATBHVyVpRbD6F/wHZyXax7LzOGsy1mfoZy9EiG
-        umiqgRZIWCH1o4Krk9e03QLWOmTCAusFc+/cStASr1CG9d12RfIjZgM3YVMS
-        9LRTVlHk9DRWd9i6e6B2chb7fz3kcV5sqzLz5YM/HWigKQVCIGFVhE7NUz0D
-        zUQWVa+T+53HsXxKkS81E1+wZKhjthaoaMrLlJXi1jXZNuDqoAty79ldSfOc
-        +FtSCpINPlHraqChiY0Mxy9gpmngWRn/WiH3xiU8R0LeIApVmleH2cANZ+qB
-        FkgY89y+iDV9A7Gd6iyYe/duRI7TD/6e5IyeBzpX1wIZTWw0uH0Xq1sGWhN3
-        Vsm9YygpdnN/tavC6UC/dCUQYEPTv9t3L90vsGzYYbn36h7T8p74R5QgQejQ
-        sVJdDUQ0sVFRP867enKzTQOvlenh219ysHU2Y7meg607+hED3kTifFAztdVZ
-        zg8L+V/Tin6K7D2p+70kSaWqmEldExvKb3TEd/QEGH0O98YwLDB/AkwTfw8T
-        6ft5bw59VBNao6UODOGznbiClEg//vRmfMQswalc0AbUynxXz48tD5kDRf99
-        QY2+XvRWU/3RElIHFxjqzif3sx6iy5lt48AKH+Rm3GA2Wjfj9vHopsCMJKgM
-        fq0YPWBUjlJ0FqTA49F0P7olR8LlRUEtiBrK14PrztD65YD51Vm+WnFoCJfN
-        TB0GvAs94B17b17g+tPVlwRDj8fea/Q4ukyvm1PT5/70CdAnr9Fn6+iSdvlv
-        mH33p0+BPn2dflF705zaUiSV+ynWIoS8ook3PjW82AlyHqoPan1b6X47OJ1O
-        rY8f+ug79bHk6m9++Jmk7yX6J72M79V2kv/g8r1ZXmU/ffC+fgP8wA90ahoA
-        AA==
+      encoding: UTF-8
+      string: "{\"link\":{\"next\":\"http://metakgs.org/api/tournament/123/round/2\",\"first\":\"http://metakgs.org/api/tournament/123/round/1\",\"prev\":null,\"last\":\"http://metakgs.org/api/tournament/123/round/4\"},\"requested_at\":\"2014-10-07T02:53:34Z\",\"responded_at\":\"2014-10-07T02:53:34Z\",\"content\":{\"games\":[{\"sgf_url\":\"http://files.gokgs.com/games/2005/9/24/simbad-flavien.sgf\",\"white\":{\"archives_url\":\"http://metakgs.org/api/archives/simbad\",\"name\":\"simbad\",\"rank\":\"19k\"},\"board_size\":19,\"black\":{\"archives_url\":\"http://metakgs.org/api/archives/flavien\",\"name\":\"flavien\",\"rank\":\"23k\"},\"start_at\":\"2005-09-24T17:00Z\"},{\"sgf_url\":\"http://files.gokgs.com/games/2005/9/24/thesee-AxelJ.sgf\",\"white\":{\"archives_url\":\"http://metakgs.org/api/archives/thesee\",\"name\":\"thesee\",\"rank\":\"18k\"},\"board_size\":19,\"black\":{\"archives_url\":\"http://metakgs.org/api/archives/AxelJ\",\"name\":\"AxelJ\",\"rank\":\"18k\"},\"start_at\":\"2005-09-24T17:00Z\"},{\"sgf_url\":\"http://files.gokgs.com/games/2005/9/24/mrbeak-Darkmoore.sgf\",\"white\":{\"archives_url\":\"http://metakgs.org/api/archives/mrbeak\",\"name\":\"mrbeak\",\"rank\":\"17k\"},\"board_size\":19,\"black\":{\"archives_url\":\"http://metakgs.org/api/archives/Darkmoore\",\"name\":\"Darkmoore\",\"rank\":\"17k\"},\"start_at\":\"2005-09-24T17:00Z\"},{\"sgf_url\":\"http://files.gokgs.com/games/2005/9/24/Rooibos-Bentham.sgf\",\"white\":{\"archives_url\":\"http://metakgs.org/api/archives/Rooibos\",\"name\":\"Rooibos\",\"rank\":\"16k\"},\"board_size\":19,\"black\":{\"archives_url\":\"http://metakgs.org/api/archives/Bentham\",\"name\":\"Bentham\",\"rank\":\"16k\"},\"start_at\":\"2005-09-24T17:00Z\"},{\"sgf_url\":\"http://files.gokgs.com/games/2005/9/24/Thedome-odif.sgf\",\"white\":{\"archives_url\":\"http://metakgs.org/api/archives/Thedome\",\"name\":\"Thedome\",\"rank\":\"16k\"},\"board_size\":19,\"black\":{\"archives_url\":\"http://metakgs.org/api/archives/odif\",\"name\":\"odif\",\"rank\":\"16k\"},\"start_at\":\"2005-09-24T17:00Z\"},{\"sgf_url\":\"http://files.gokgs.com/games/2005/9/24/sai160189-olczyk.sgf\",\"white\":{\"archives_url\":\"http://metakgs.org/api/archives/sai160189\",\"name\":\"sai160189\",\"rank\":\"14k\"},\"board_size\":19,\"black\":{\"archives_url\":\"http://metakgs.org/api/archives/olczyk\",\"name\":\"olczyk\",\"rank\":\"15k\"},\"start_at\":\"2005-09-24T17:00Z\"},{\"sgf_url\":\"http://files.gokgs.com/games/2005/9/24/D239500800-Ozymandius.sgf\",\"white\":{\"archives_url\":\"http://metakgs.org/api/archives/D239500800\",\"name\":\"D239500800\",\"rank\":\"14k\"},\"board_size\":19,\"black\":{\"archives_url\":\"http://metakgs.org/api/archives/Ozymandius\",\"name\":\"Ozymandius\",\"rank\":\"14k\"},\"start_at\":\"2005-09-24T17:00Z\"},{\"sgf_url\":\"http://files.gokgs.com/games/2005/9/24/gregfer-galaxis.sgf\",\"white\":{\"archives_url\":\"http://metakgs.org/api/archives/gregfer\",\"name\":\"gregfer\",\"rank\":\"13k\"},\"board_size\":19,\"black\":{\"archives_url\":\"http://metakgs.org/api/archives/galaxis\",\"name\":\"galaxis\",\"rank\":\"14k\"},\"start_at\":\"2005-09-24T17:00Z\"},{\"sgf_url\":\"http://files.gokgs.com/games/2005/9/24/StoneSage-DarkSilver.sgf\",\"white\":{\"archives_url\":\"http://metakgs.org/api/archives/StoneSage\",\"name\":\"StoneSage\",\"rank\":\"11k\"},\"board_size\":19,\"black\":{\"archives_url\":\"http://metakgs.org/api/archives/DarkSilver\",\"name\":\"DarkSilver\",\"rank\":\"13k\"},\"start_at\":\"2005-09-24T17:00Z\"},{\"sgf_url\":\"http://files.gokgs.com/games/2005/9/24/ssmfung-revo.sgf\",\"white\":{\"archives_url\":\"http://metakgs.org/api/archives/ssmfung\",\"name\":\"ssmfung\",\"rank\":\"10k\"},\"board_size\":19,\"black\":{\"archives_url\":\"http://metakgs.org/api/archives/revo\",\"name\":\"revo\",\"rank\":\"11k\"},\"start_at\":\"2005-09-24T17:00Z\"},{\"sgf_url\":\"http://files.gokgs.com/games/2005/9/24/sebos2013-trc.sgf\",\"white\":{\"archives_url\":\"http://metakgs.org/api/archives/sebos2013\",\"name\":\"sebos2013\",\"rank\":\"10k\"},\"board_size\":19,\"black\":{\"archives_url\":\"http://metakgs.org/api/archives/trc\",\"name\":\"trc\",\"rank\":\"10k\"},\"start_at\":\"2005-09-24T17:00Z\"},{\"sgf_url\":\"http://files.gokgs.com/games/2005/9/24/Gnolli-fintiger.sgf\",\"white\":{\"archives_url\":\"http://metakgs.org/api/archives/Gnolli\",\"name\":\"Gnolli\",\"rank\":\"9k\"},\"board_size\":19,\"black\":{\"archives_url\":\"http://metakgs.org/api/archives/fintiger\",\"name\":\"fintiger\",\"rank\":\"10k\"},\"start_at\":\"2005-09-24T17:00Z\"},{\"sgf_url\":\"http://files.gokgs.com/games/2005/9/24/cslater-mstarsup5.sgf\",\"white\":{\"archives_url\":\"http://metakgs.org/api/archives/cslater\",\"name\":\"cslater\",\"rank\":\"8k\"},\"board_size\":19,\"black\":{\"archives_url\":\"http://metakgs.org/api/archives/mstarsup5\",\"name\":\"mstarsup5\",\"rank\":\"9k\"},\"start_at\":\"2005-09-24T17:00Z\"},{\"sgf_url\":\"http://files.gokgs.com/games/2005/9/24/AtledK-kilroy.sgf\",\"white\":{\"archives_url\":\"http://metakgs.org/api/archives/AtledK\",\"name\":\"AtledK\",\"rank\":\"7k\"},\"board_size\":19,\"black\":{\"archives_url\":\"http://metakgs.org/api/archives/kilroy\",\"name\":\"kilroy\",\"rank\":\"8k\"},\"start_at\":\"2005-09-24T17:00Z\"},{\"sgf_url\":\"http://files.gokgs.com/games/2005/9/24/acmh7-Shu04.sgf\",\"white\":{\"archives_url\":\"http://metakgs.org/api/archives/acmh7\",\"name\":\"acmh7\",\"rank\":\"6k\"},\"board_size\":19,\"black\":{\"archives_url\":\"http://metakgs.org/api/archives/Shu04\",\"name\":\"Shu04\",\"rank\":\"6k\"},\"start_at\":\"2005-09-24T17:00Z\"},{\"sgf_url\":\"http://files.gokgs.com/games/2005/9/24/JeonJi-vacation.sgf\",\"white\":{\"archives_url\":\"http://metakgs.org/api/archives/JeonJi\",\"name\":\"JeonJi\",\"rank\":\"5k\"},\"board_size\":19,\"black\":{\"archives_url\":\"http://metakgs.org/api/archives/vacation\",\"name\":\"vacation\",\"rank\":\"6k\"},\"start_at\":\"2005-09-24T17:00Z\"}],\"byes\":[{\"archives_url\":\"http://metakgs.org/api/archives/GoMe\",\"name\":\"GoMe\",\"type\":\"System\",\"rank\":\"4k\"},{\"archives_url\":\"http://metakgs.org/api/archives/Unicum\",\"name\":\"Unicum\",\"type\":\"No
+        show\",\"rank\":\"7k\"},{\"archives_url\":\"http://metakgs.org/api/archives/retesz\",\"name\":\"retesz\",\"type\":\"No
+        show\",\"rank\":\"10k\"},{\"archives_url\":\"http://metakgs.org/api/archives/ox1\",\"name\":\"ox1\",\"type\":\"Requested\",\"rank\":\"11k\"},{\"archives_url\":\"http://metakgs.org/api/archives/Mercedes\",\"name\":\"Mercedes\",\"type\":\"No
+        show\",\"rank\":\"14k\"},{\"archives_url\":\"http://metakgs.org/api/archives/i7\",\"name\":\"i7\",\"type\":\"Requested\",\"rank\":\"16k\"},{\"archives_url\":\"http://metakgs.org/api/archives/uXs\",\"name\":\"uXs\",\"type\":\"Requested\",\"rank\":\"18k\"}],\"round\":1,\"name\":\"September
+        Tournament, American/European daytime, 4k Division\",\"rounds\":[{\"url\":\"http://metakgs.org/api/tournament/123/round/1\",\"round\":1,\"end_at\":\"2005-09-24T19:00Z\",\"start_at\":\"2005-09-24T17:00Z\"},{\"url\":\"http://metakgs.org/api/tournament/123/round/2\",\"round\":2,\"end_at\":\"2005-09-24T21:00Z\",\"start_at\":\"2005-09-24T19:00Z\"},{\"url\":\"http://metakgs.org/api/tournament/123/round/3\",\"round\":3,\"end_at\":\"2005-09-25T19:00Z\",\"start_at\":\"2005-09-25T17:00Z\"},{\"url\":\"http://metakgs.org/api/tournament/123/round/4\",\"round\":4,\"end_at\":\"2005-09-25T21:00Z\",\"start_at\":\"2005-09-25T19:00Z\"}],\"id\":123,\"entrants_url\":\"http://metakgs.org/api/tournament/123/entrants\"},\"request_url\":\"http://www.gokgs.com/tournGames.jsp?id=123&round=1\",\"message\":\"OK\"}"
     http_version: 
-  recorded_at: Fri, 24 Oct 2014 06:11:54 GMT
+  recorded_at: Fri, 24 Oct 2014 10:09:43 GMT
 recorded_with: VCR 2.9.3

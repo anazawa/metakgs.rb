@@ -12,87 +12,38 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - ! '*/*'
+      - "*/*"
   response:
     status:
       code: 200
-      message: !binary |-
-        T0s=
+      message: OK
     headers:
-      !binary "U2VydmVy":
-      - !binary |-
-        bmdpbngvMS42LjI=
-      !binary "RGF0ZQ==":
-      - !binary |-
-        RnJpLCAyNCBPY3QgMjAxNCAwNTo0Njo0MiBHTVQ=
-      !binary "Q29udGVudC1UeXBl":
-      - !binary |-
-        YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD11dGYtOA==
-      !binary "VHJhbnNmZXItRW5jb2Rpbmc=":
-      - !binary |-
-        Y2h1bmtlZA==
-      !binary "Q29ubmVjdGlvbg==":
-      - !binary |-
-        a2VlcC1hbGl2ZQ==
-      !binary "Q2FjaGUtQ29udHJvbA==":
-      - !binary |-
-        bWF4LWFnZT0zNjAw
-      - !binary |-
-        cHVibGlj
-      !binary "TGFzdC1Nb2RpZmllZA==":
-      - !binary |-
-        RnJpLCAyNCBPY3QgMjAxNCAwNTo0Njo0MiBHTVQ=
-      !binary "QWNjZXNzLUNvbnRyb2wtQWxsb3ctTWV0aG9kcw==":
-      - !binary |-
-        R0VU
-      !binary "QWNjZXNzLUNvbnRyb2wtQWxsb3ctT3JpZ2lu":
-      - !binary |-
-        Kg==
-      !binary "WC1Db250ZW50LVR5cGUtT3B0aW9ucw==":
-      - !binary |-
-        bm9zbmlmZg==
-      !binary "WC1GcmFtZS1PcHRpb25z":
-      - !binary |-
-        REVOWQ==
-      !binary "Q29udGVudC1FbmNvZGluZw==":
-      - !binary |-
-        Z3ppcA==
+      Server:
+      - nginx/1.6.2
+      Date:
+      - Fri, 24 Oct 2014 10:09:42 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=3600
+      - public
+      Last-Modified:
+      - Fri, 24 Oct 2014 05:46:42 GMT
+      Access-Control-Allow-Methods:
+      - GET
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
     body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        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
+      encoding: UTF-8
+      string: "{\"requested_at\":\"2014-10-24T05:46:41Z\",\"responded_at\":\"2014-10-24T05:46:42Z\",\"content\":{\"players\":[{\"archives_url\":\"http://metakgs.org/api/archives/bagaller\",\"name\":\"bagaller\",\"position\":1,\"rank\":\"9d\"},{\"archives_url\":\"http://metakgs.org/api/archives/mm\",\"name\":\"mm\",\"position\":2,\"rank\":\"9d\"},{\"archives_url\":\"http://metakgs.org/api/archives/gowithwi\",\"name\":\"gowithwi\",\"position\":3,\"rank\":\"9d\"},{\"archives_url\":\"http://metakgs.org/api/archives/MilanMilan\",\"name\":\"MilanMilan\",\"position\":4,\"rank\":\"9d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Oscar\",\"name\":\"Oscar\",\"position\":5,\"rank\":\"9d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Sweetrip\",\"name\":\"Sweetrip\",\"position\":6,\"rank\":\"9d\"},{\"archives_url\":\"http://metakgs.org/api/archives/zanku\",\"name\":\"zanku\",\"position\":7,\"rank\":\"9d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Lucifer\",\"name\":\"Lucifer\",\"position\":8,\"rank\":\"8d\"},{\"archives_url\":\"http://metakgs.org/api/archives/cloudnotes\",\"name\":\"cloudnotes\",\"position\":9,\"rank\":\"8d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Crazywind\",\"name\":\"Crazywind\",\"position\":10,\"rank\":\"8d\"},{\"archives_url\":\"http://metakgs.org/api/archives/RunGo\",\"name\":\"RunGo\",\"position\":11,\"rank\":\"8d\"},{\"archives_url\":\"http://metakgs.org/api/archives/onrage\",\"name\":\"onrage\",\"position\":12,\"rank\":\"8d\"},{\"archives_url\":\"http://metakgs.org/api/archives/kghin\",\"name\":\"kghin\",\"position\":13,\"rank\":\"8d\"},{\"archives_url\":\"http://metakgs.org/api/archives/zyoda\",\"name\":\"zyoda\",\"position\":14,\"rank\":\"8d\"},{\"archives_url\":\"http://metakgs.org/api/archives/billlin\",\"name\":\"billlin\",\"position\":15,\"rank\":\"8d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Allosaurus\",\"name\":\"Allosaurus\",\"position\":16,\"rank\":\"8d\"},{\"archives_url\":\"http://metakgs.org/api/archives/luckygoba\",\"name\":\"luckygoba\",\"position\":17,\"rank\":\"8d\"},{\"archives_url\":\"http://metakgs.org/api/archives/JokerAce\",\"name\":\"JokerAce\",\"position\":18,\"rank\":\"8d\"},{\"archives_url\":\"http://metakgs.org/api/archives/formosa\",\"name\":\"formosa\",\"position\":19,\"rank\":\"8d\"},{\"archives_url\":\"http://metakgs.org/api/archives/nikuaya\",\"name\":\"nikuaya\",\"position\":20,\"rank\":\"8d\"},{\"archives_url\":\"http://metakgs.org/api/archives/satan666\",\"name\":\"satan666\",\"position\":21,\"rank\":\"8d\"},{\"archives_url\":\"http://metakgs.org/api/archives/cyclops\",\"name\":\"cyclops\",\"position\":22,\"rank\":\"8d\"},{\"archives_url\":\"http://metakgs.org/api/archives/BlackWhite\",\"name\":\"BlackWhite\",\"position\":23,\"rank\":\"8d\"},{\"archives_url\":\"http://metakgs.org/api/archives/roln111\",\"name\":\"roln111\",\"position\":24,\"rank\":\"8d\"},{\"archives_url\":\"http://metakgs.org/api/archives/famine\",\"name\":\"famine\",\"position\":25,\"rank\":\"8d\"},{\"archives_url\":\"http://metakgs.org/api/archives/doh\",\"name\":\"doh\",\"position\":26,\"rank\":\"8d\"},{\"archives_url\":\"http://metakgs.org/api/archives/cheater\",\"name\":\"cheater\",\"position\":27,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/skyu\",\"name\":\"skyu\",\"position\":28,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Megalodon\",\"name\":\"Megalodon\",\"position\":29,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/easylover\",\"name\":\"easylover\",\"position\":30,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/fanweiqi\",\"name\":\"fanweiqi\",\"position\":31,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/goliard\",\"name\":\"goliard\",\"position\":32,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/iamlunatic\",\"name\":\"iamlunatic\",\"position\":33,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Answer3\",\"name\":\"Answer3\",\"position\":34,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/ki\",\"name\":\"ki\",\"position\":35,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Neufx9\",\"name\":\"Neufx9\",\"position\":36,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/iLoveJin\",\"name\":\"iLoveJin\",\"position\":37,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/GreatWall\",\"name\":\"GreatWall\",\"position\":38,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Tryo\",\"name\":\"Tryo\",\"position\":39,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/ouki\",\"name\":\"ouki\",\"position\":40,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/idontcare\",\"name\":\"idontcare\",\"position\":41,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/sky15\",\"name\":\"sky15\",\"position\":42,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/okao\",\"name\":\"okao\",\"position\":43,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/c17\",\"name\":\"c17\",\"position\":44,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/supertjc\",\"name\":\"supertjc\",\"position\":45,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/insaneGo\",\"name\":\"insaneGo\",\"position\":46,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Hiplay\",\"name\":\"Hiplay\",\"position\":47,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Grip\",\"name\":\"Grip\",\"position\":48,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Maupassant\",\"name\":\"Maupassant\",\"position\":49,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/gasin\",\"name\":\"gasin\",\"position\":50,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/renpa\",\"name\":\"renpa\",\"position\":51,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/comeon\",\"name\":\"comeon\",\"position\":52,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Bomberman\",\"name\":\"Bomberman\",\"position\":53,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/pppppppp\",\"name\":\"pppppppp\",\"position\":54,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Kelsea\",\"name\":\"Kelsea\",\"position\":55,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/meanman\",\"name\":\"meanman\",\"position\":56,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/OohAah\",\"name\":\"OohAah\",\"position\":57,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/fbp\",\"name\":\"fbp\",\"position\":58,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/pestilence\",\"name\":\"pestilence\",\"position\":59,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/mi5103kann\",\"name\":\"mi5103kann\",\"position\":60,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/MaitreLim\",\"name\":\"MaitreLim\",\"position\":61,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/nd67\",\"name\":\"nd67\",\"position\":62,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/misao\",\"name\":\"misao\",\"position\":63,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/twoeye\",\"name\":\"twoeye\",\"position\":64,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/lrelia\",\"name\":\"lrelia\",\"position\":65,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/OBORODONO5\",\"name\":\"OBORODONO5\",\"position\":66,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/goldrush\",\"name\":\"goldrush\",\"position\":67,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/DARE\",\"name\":\"DARE\",\"position\":68,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/bluetoad\",\"name\":\"bluetoad\",\"position\":69,\"rank\":\"7d\"},{\"archives_url\":\"http://metakgs.org/api/archives/namita\",\"name\":\"namita\",\"position\":70,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Satevis\",\"name\":\"Satevis\",\"position\":71,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/wintogo\",\"name\":\"wintogo\",\"position\":72,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/ILLCoyote\",\"name\":\"ILLCoyote\",\"position\":73,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Vij\",\"name\":\"Vij\",\"position\":74,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/ben00\",\"name\":\"ben00\",\"position\":75,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/intenseG\",\"name\":\"intenseG\",\"position\":76,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/otsukaigo\",\"name\":\"otsukaigo\",\"position\":77,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/fireb\",\"name\":\"fireb\",\"position\":78,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/spoonball\",\"name\":\"spoonball\",\"position\":79,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/hjdsj28y7\",\"name\":\"hjdsj28y7\",\"position\":80,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Timmy\",\"name\":\"Timmy\",\"position\":81,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Annabeth\",\"name\":\"Annabeth\",\"position\":82,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Lsugyen\",\"name\":\"Lsugyen\",\"position\":83,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Hutoshi4\",\"name\":\"Hutoshi4\",\"position\":84,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Flume\",\"name\":\"Flume\",\"position\":85,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/jiji123\",\"name\":\"jiji123\",\"position\":86,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Grande\",\"name\":\"Grande\",\"position\":87,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Sandmann\",\"name\":\"Sandmann\",\"position\":88,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/SIsandmann\",\"name\":\"SIsandmann\",\"position\":89,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/masa\",\"name\":\"masa\",\"position\":90,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/pls\",\"name\":\"pls\",\"position\":91,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Gamulon\",\"name\":\"Gamulon\",\"position\":92,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/seonga\",\"name\":\"seonga\",\"position\":93,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/fhgctdsji\",\"name\":\"fhgctdsji\",\"position\":94,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Dyno\",\"name\":\"Dyno\",\"position\":95,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/terrydodo\",\"name\":\"terrydodo\",\"position\":96,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Chirp\",\"name\":\"Chirp\",\"position\":97,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/ben0\",\"name\":\"ben0\",\"position\":98,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/Welvang\",\"name\":\"Welvang\",\"position\":99,\"rank\":\"6d\"},{\"archives_url\":\"http://metakgs.org/api/archives/eastwisdom\",\"name\":\"eastwisdom\",\"position\":100,\"rank\":\"6d\"}]},\"request_url\":\"http://www.gokgs.com/top100.jsp\",\"message\":\"OK\"}"
     http_version: 
-  recorded_at: Fri, 24 Oct 2014 05:46:42 GMT
+  recorded_at: Fri, 24 Oct 2014 10:09:42 GMT
 recorded_with: VCR 2.9.3
