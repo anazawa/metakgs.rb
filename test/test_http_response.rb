@@ -14,7 +14,7 @@ class TestHTTPResponse < Test::Unit::TestCase
     assert_equal({ 'foo' => 'bar' }, response.body)
 
     assert_raise MetaKGS::Error::ParsingError do
-      build_200({ 'Content-Type' => 'application/json' }, '{"foo":"bar"')
+      build_200({ 'Content-Type' => 'application/json' }, '{invalid json}')
     end
   end
 

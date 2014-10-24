@@ -1,5 +1,6 @@
 require 'test/unit'
 require 'metakgs/client'
+require File.expand_path '../helper', __FILE__
 
 class TestClient < Test::Unit::TestCase
 
@@ -19,7 +20,7 @@ class TestClient < Test::Unit::TestCase
 
   def test_uri_for
     {
-      '/foo'                   => 'http://metakgs.org/api/foo',
+      'foo/bar'                => 'http://metakgs.org/api/foo/bar',
       'http://example.com/foo' => 'http://example.com/foo',
     }.each do |input, expected|
       actual = @client.uri_for input
@@ -28,3 +29,4 @@ class TestClient < Test::Unit::TestCase
   end
 
 end
+

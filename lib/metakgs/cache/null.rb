@@ -1,3 +1,5 @@
+require 'metakgs/cache'
+
 module MetaKGS
   class Cache
     class Null < Cache

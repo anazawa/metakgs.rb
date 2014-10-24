@@ -41,7 +41,7 @@ module MetaKGS
       end
 
       def cacheable_class?
-        return @cacheable_class unless @cacheable_class.nil?
+        return @cacheable_class if defined? @cacheable_class
         @cacheable_class = CACHEABLE_CLASSES.any? { |klass| klass === self }
       end
 
