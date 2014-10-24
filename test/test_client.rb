@@ -93,11 +93,15 @@ class TestClient < Test::Unit::TestCase
       },
     )
 
-    assert_equal 'hello', client.get('test-conditional-get').body
+    response = client.get 'test-conditional-get'
+    assert_equal 'hello', response.body
+    assert_equal now.to_i, response.date.to_i
     assert_requested ok
 
     Timecop.freeze later do
-      assert_equal 'hello', client.get('test-conditional-get').body
+      response = client.get 'test-conditional-get'
+      assert_equal 'hello', response.body
+      assert_equal later.to_i, response.date.to_i
       assert_requested not_modified
     end
   end
