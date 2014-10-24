@@ -12,11 +12,11 @@ module MetaKGS
       end
 
       def fetch_object( key )
-        storage[key]
+        storage.key?(key) ? deep_clone(storage[key]) : nil
       end
 
       def store_object( object )
-        storage[object.key] = object
+        storage[object.key] = deep_clone object
       end
 
       def delete_object( key )
@@ -25,6 +25,12 @@ module MetaKGS
 
       def object_keys
         storage.keys
+      end
+
+    private
+
+      def deep_clone( object )
+        Marshal.load Marshal.dump(object)
       end
 
     end

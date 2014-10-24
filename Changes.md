@@ -1,3 +1,12 @@
+## 0.0.5 Oct 25th, 2014
+
+- add unit tests
+- tests require 'test-unit', 'vcr', 'webmock' and 'timecop'
+- add Travis CI status image to README.md
+- rake task defaults to 'test'
+- add Cache::Memory
+- Cache::Null inherits from Cache properly
+
 ## 0.0.4 Oct 23rd, 2014
 
 - add #get_latest_rank_by_name
