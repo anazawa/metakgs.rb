@@ -1,3 +1,8 @@
+## 0.0.6 Dec 22nd, 2014
+
+- #get_latest_rank_by_name does not depend on the case of the given name
+  (Ellyster) #1
+
 ## 0.0.5 Oct 25th, 2014
 
 - add unit tests
