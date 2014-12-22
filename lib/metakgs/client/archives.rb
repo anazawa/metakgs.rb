@@ -37,7 +37,8 @@ module MetaKGS
       alias :games :get_games
 
       def get_latest_rank_by_name( name )
-        archives = get_archives :user => name
+        downcase = name.downcase
+        archives = get_archives :user => downcase
         rank = nil
 
         while archives and rank.nil?
@@ -46,7 +47,7 @@ module MetaKGS
             rank = game['owner']['rank'] || ''
           elsif game
             players = [ *game['black'], *game['white'] ]
-            rank = players.find { |player| player['name'] == name }['rank']
+            rank = players.find { |player| player['name'].downcase == downcase }['rank']
             rank ||= ''
           else
             archives = archives.prev

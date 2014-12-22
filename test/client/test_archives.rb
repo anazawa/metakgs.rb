@@ -55,6 +55,9 @@ module Client
       VCR.use_cassette 'archives/anazawa' do
         assert_equal '1d', @client.get_latest_rank_by_name('anazawa')
       end
+      VCR.use_cassette 'archives/anazawa' do
+        assert_equal '1d', @client.get_latest_rank_by_name('Anazawa')
+      end
     end
 
   end
